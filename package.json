@@ -1,0 +1,23 @@
+{
+  "name": "reciepts",
+  "version": "0.1.0",
+  "description": "Show me the receipts on your citations. Parallel multi-agent citation verification for Claude Code.",
+  "keywords": [
+    "citations",
+    "verification",
+    "academic",
+    "llm",
+    "claude-code",
+    "research-integrity",
+    "neurips",
+    "peer-review",
+    "receipts"
+  ],
+  "author": "James Weatherhead",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JamesWeatherhead/reciepts"
+  },
+  "homepage": "https://github.com/JamesWeatherhead/reciepts#readme"
+}

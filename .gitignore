@@ -1,0 +1,18 @@
+# Papers and sources (large files, user-provided)
+papers/*/manuscript.pdf
+papers/*/sources/
+papers/*/verdicts/
+
+# Keep structure but not content
+!papers/.gitkeep
+!papers/*/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Results (generated)
+RESULTS.md
