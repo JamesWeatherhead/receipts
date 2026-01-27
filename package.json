@@ -19,5 +19,13 @@
     "type": "git",
     "url": "https://github.com/JamesWeatherhead/reciepts"
   },
-  "homepage": "https://github.com/JamesWeatherhead/reciepts#readme"
+  "homepage": "https://github.com/JamesWeatherhead/reciepts#readme",
+  "bin": {
+    "reciepts": "./bin/install.js"
+  },
+  "files": [
+    "bin/",
+    "commands/",
+    "agents/"
+  ]
 }

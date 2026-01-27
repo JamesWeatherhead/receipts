@@ -6,6 +6,30 @@ A parallel multi-agent system that verifies your citations actually say what you
 
 ---
 
+## Installation
+
+```bash
+npx reciepts
+```
+
+That's it. This installs slash commands to your Claude Code config (`~/.claude/commands/reciepts/`).
+
+Then in Claude Code:
+
+```
+/reciepts:help     # See all commands
+/reciepts:init     # Initialize a paper for verification
+/reciepts:verify   # Run parallel verification
+/reciepts:report   # Generate final report
+```
+
+**Uninstall:**
+```bash
+npx reciepts --uninstall
+```
+
+---
+
 ## The Problem
 
 GPTZero found [100+ fabricated citations](https://gptzero.me/news/neurips/) in NeurIPS 2025 papers. But that's just citations that *don't exist*.
@@ -95,7 +119,13 @@ CORRECTION: Change "IRB waiver" to "IRB approval"
 
 ## Quick Start
 
-### 1. Setup a paper for verification
+### 1. Install
+
+```bash
+npx reciepts
+```
+
+### 2. Setup a paper for verification
 
 ```bash
 mkdir -p papers/my_paper/sources
@@ -103,18 +133,21 @@ cp my_manuscript.pdf papers/my_paper/
 cp ref1.pdf ref2.pdf ref3.pdf papers/my_paper/sources/
 ```
 
-### 2. Tell Claude Code to run reciepts
+### 3. Initialize and verify
 
+In Claude Code:
 ```
-Run reciepts verification on papers/my_paper/
-
-Use the prompts in prompts/ folder.
-Spawn one verification agent per reference.
-Write verdicts to each reference subfolder.
+/reciepts:init papers/my_paper
+/reciepts:verify papers/my_paper
 ```
 
-### 3. Get your receipts
+### 4. Get your receipts
 
+```
+/reciepts:report papers/my_paper
+```
+
+Or directly:
 ```bash
 cat papers/my_paper/RECIEPTS.md
 ```
@@ -167,13 +200,17 @@ Yes. That's the point. Run it before you submit. Sleep better.
 
 ## For Claude Code Users
 
-This is a **prompt-based workflow**, not a traditional code library. The "code" is the orchestration prompts in `prompts/`.
+This is a **slash command workflow** for Claude Code. Install with `npx reciepts` and you get:
 
-To use:
-1. Clone this repo
-2. Add your paper + sources to `papers/`
-3. Ask Claude Code to run verification using the prompts
-4. Get your receipts
+| Command | What it does |
+|---------|--------------|
+| `/reciepts` | Overview and quick start |
+| `/reciepts:init <path>` | Parse manuscript, create checklist |
+| `/reciepts:verify <path>` | Spawn parallel verification agents |
+| `/reciepts:report <path>` | Generate final RECIEPTS.md report |
+| `/reciepts:help` | Show all commands |
+
+The agents read your manuscript + source PDFs and create detailed verdicts for every citation.
 
 ---
 
