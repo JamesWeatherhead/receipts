@@ -45,9 +45,13 @@ INPUTS:
 
 TASK:
 1. Read the manuscript. Find ALL places where reference [N] is cited.
-2. For each citation, extract the EXACT claim being made.
+2. For each citation, extract the VERBATIM claim being made (copy-paste exact words).
 3. Read the source PDF thoroughly.
-4. Compare: Does the source support each claim?
+4. Find the VERBATIM passage in the source that relates to the claim (copy-paste exact words).
+5. Compare: Does the source support the claim?
+
+CRITICAL: You MUST provide VERBATIM quotes. Not paraphrases. Not summaries.
+Copy the exact text from both documents. This creates an auditable evidence trail.
 
 OUTPUT: Write to <path>/verdicts/ref_[N]/verdict.md
 
@@ -59,17 +63,18 @@ REFERENCE: [citation]
 
 ## Instance 1
 📍 LOCATION: [section, page]
-📝 CLAIM: "[exact quote from manuscript]"
-📖 SOURCE SAYS: "[quote from source]"
+📝 MANUSCRIPT SAYS (VERBATIM): "[copy-paste exact text from manuscript]"
+📖 SOURCE SAYS (VERBATIM): "[copy-paste exact text from source PDF]"
 ⚖️ ASSESSMENT: [Supported/Not Supported/Contradicted]
-🔍 DISCREPANCY: [if any]
+🔍 DISCREPANCY: [if any - be specific about wording differences]
 
 ## Verdict
 SUMMARY: [one paragraph]
 FIX NEEDED: [specific fix or "None"]
 ```
 
-Be precise. Quote exactly. One reference, one verdict.
+IMPORTANT: Verbatim means verbatim. Do not paraphrase. Do not summarize.
+Copy-paste the exact words so the user can verify your assessment.
 ```
 
 ## After All Agents Complete

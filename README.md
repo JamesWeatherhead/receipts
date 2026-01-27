@@ -198,6 +198,26 @@ Yes. That's the point. Run it before you submit. Sleep better.
 
 ---
 
+## Legal Disclaimer
+
+**You are responsible for ensuring you have the right to upload any PDFs to Claude Code.**
+
+This tool requires you to provide source PDFs for verification. Before uploading any document:
+
+- Ensure you have legal access to the document (purchased, open access, institutional access, etc.)
+- Respect copyright and licensing terms
+- Do not upload documents you obtained through unauthorized means
+- Check your institution's policies on AI tool usage with copyrighted materials
+
+**The authors of this tool accept no responsibility for how you obtain or use source documents.** You alone are responsible for compliance with copyright law, publisher terms of service, and your institution's policies.
+
+When in doubt, use only:
+- Open access papers
+- Papers you authored
+- Documents explicitly licensed for this use
+
+---
+
 ## For Claude Code Users
 
 This is a **slash command workflow** for Claude Code. Install with `npx reciepts` and you get:
