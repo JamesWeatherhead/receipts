@@ -114,7 +114,7 @@ One agent per reference. Cost depends on paper size and model.
 
 I review papers. I've seen citations that say the literal opposite of what the manuscript claims. Not maliciously—just human error. Memory is unreliable. Reading is hard. Deadlines are real.
 
-LLMs made this worse. They confidently generate citation text that sounds right but isn't. The paper exists. The author exists. The claim? Fabricated.
+LLMs made this worse. They confidently generate citation text that sounds right but isn't. The paper exists. The author exists. The claim? Fabricated. [GPTZero found 100 hallucinated citations across 51 papers at NeurIPS 2024](https://techcrunch.com/2026/01/21/irony-alert-hallucinated-citations-found-in-papers-from-neurips-the-prestigious-ai-conference/) — and those are just the fake ones.
 
 Existing tools catch fake citations (papers that don't exist). Nothing catches **wrong citations** (papers that exist but don't support your claim).
 
