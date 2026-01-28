@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.5.3';
+const VERSION = '0.6.0';
 const PACKAGE_NAME = 'reciepts';
 
 // Colors
@@ -24,19 +24,25 @@ function log(msg, color = '') {
 function banner() {
   console.log(`
 ${colors.cyan}
-    ┌─────────────┐
-    │ ≋≋≋≋≋≋≋≋≋≋≋ │
-    │             │
-    │  CITATIONS  │
-    │  ─────────  │
-    │  [1] ✓      │
-    │  [2] ✓      │
-    │  [3] ✗      │
-    │             │
-    │ ≋≋≋≋≋≋≋≋≋≋≋ │
-    └─────────────┘
+    ┌────────────────────────────┐
+    │                            │
+    │       R E C I E P T S      │
+    │    Citation Verification   │
+    │    by: James Weatherhead   │
+    │                            │
+    │   ════════════════════     │
+    │      VERIFICATION          │
+    │   ════════════════════     │
+    │                            │
+    │   [1] Smith 2020   ✓ VALID │
+    │   [2] Jones 2021   ✗ WRONG │
+    │   [3] Chen 2019    ✓ VALID │
+    │                            │
+    │      THANK  YOU !          │
+    │                            │
+    └────────────────────────────┘
 ${colors.reset}
-${colors.bright}  reciepts${colors.reset} v${VERSION}
+${colors.bright}  reciepts${colors.reset} v${VERSION} by James Weatherhead
   Verify your citations say what you claim.
 `);
 }

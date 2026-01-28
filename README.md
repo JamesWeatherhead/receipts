@@ -2,9 +2,7 @@
 
 <p align="center">
 <strong>Verify your citations actually say what you claim they say.</strong>
-</p>
-
-<p align="center">
+<br><br>
 Every academic knows the fear: <em>Did I remember that paper correctly?</em> You cited 50 sources. You're not re-reading all of them. Neither is your reviewer. But what if one says the opposite of what you wrote?
 </p>
 
@@ -13,20 +11,14 @@ Every academic knows the fear: <em>Did I remember that paper correctly?</em> You
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
 </p>
 
-<p align="center">
-
 ```bash
 npx reciepts
 ```
 
-</p>
+<p align="center">Works on Mac, Windows, and Linux.</p>
 
 <p align="center">
-Works on Mac, Windows, and Linux.
-</p>
-
-<p align="center">
-  <img src="assets/terminal.png" alt="reciepts install" width="600">
+<img src="assets/terminal.png" alt="reciepts install" width="600">
 </p>
 
 ---
