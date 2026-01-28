@@ -28,83 +28,47 @@ I built reciepts to fix that. One command. Parallel agents. Verbatim quotes. Don
 
 ---
 
-## Quick Start (5 minutes)
+## Quick Start
 
-### 1. Install Claude Code
+### Step 1: Install Claude Code
 
-reciepts runs inside Claude Code. If you do not have it:
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
-
-No npm? [Get Node.js first](https://nodejs.org/).
-
-### 2. Install reciepts
-
-Open Terminal. Run this command:
+Open Terminal. Run this:
 
 <p align="center">
-<img src="assets/screenshots/step1.png" alt="Run npx reciepts" width="500">
+<img src="assets/screenshots/step0.png" alt="Install Claude Code" width="550">
 </p>
 
-```bash
-npx reciepts
-```
+### Step 2: Install reciepts
 
-You will see a receipt banner. That means it worked. This installs the `/reciepts` command into Claude Code.
+Run this:
 
-**You only do this once.**
+<p align="center">
+<img src="assets/screenshots/step1.png" alt="Install reciepts" width="500">
+</p>
 
-### 3. Set up your paper folder
+You will see a receipt banner. That means it worked.
 
-Create a folder with your manuscript and source PDFs:
+### Step 3: Set up your folder
 
 <p align="center">
 <img src="assets/screenshots/step2.png" alt="Folder structure" width="380">
 </p>
 
-```
-thesis/
-├── my_dissertation.pdf    ← your paper (any name works)
-└── sources/               ← create this folder
-    ├── smith_2020.pdf     ← the PDFs you cited
-    ├── jones_2021.pdf
-    └── chen_2019.pdf
-```
+Put your paper in a folder. Create a `sources/` subfolder. Put your cited PDFs inside.
 
-**Important:**
-- Put your manuscript in the root folder
-- Create a `sources/` folder inside
-- Put all your cited PDFs in `sources/`
-- Name them however you want (reciepts will match them)
+### Step 4: Run reciepts
 
-### 4. Run reciepts
-
-Open Claude Code. Navigate to your paper folder. Type:
+Open Claude Code in your paper folder. Type `/reciepts`:
 
 <p align="center">
-<img src="assets/screenshots/step3.png" alt="Run /reciepts" width="500">
+<img src="assets/screenshots/step3.png" alt="Run reciepts" width="500">
 </p>
 
-```
-/reciepts
-```
-
-That is it. reciepts will:
-1. Read your manuscript
-2. Find every citation
-3. Spawn one AI agent per citation (in parallel)
-4. Check each source for what it actually says
-5. Write a report to `RECIEPTS.md`
-
-50 citations = 50 agents = about 2 minutes.
+Done. Check `RECIEPTS.md` for your report.
 
 ---
 
 ## What You Get
-
-A report showing every citation and whether it checks out:
 
 ```
 # Citation Verification Report
@@ -124,11 +88,11 @@ A report showing every citation and whether it checks out:
 **Fix:** Change "99%" to "73%", remove "all benchmarks"
 ```
 
-| Status | What it means |
-|--------|---------------|
-| **VALID** | Your citation is accurate |
-| **ADJUST** | Small fix needed (wrong number, slightly off wording) |
-| **INVALID** | Source does not support your claim at all |
+| Status | Meaning |
+|--------|---------|
+| **VALID** | Citation is accurate |
+| **ADJUST** | Small fix needed |
+| **INVALID** | Source does not support claim |
 
 ---
 
@@ -162,17 +126,8 @@ Yes. Claude Code requires one. [Get it here](https://console.anthropic.com/).
 **What file formats work?**
 PDF, Markdown, and Word docs.
 
-**Can I exclude certain citations?**
-Yes. Create `excluded_refs.txt` and list the ones to skip.
-
 **What if a source PDF is missing?**
 reciepts will tell you which ones it could not find.
-
----
-
-## Legal
-
-You need rights to the PDFs you verify. Use open access papers, your own manuscripts, or properly licensed documents.
 
 ---
 
