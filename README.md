@@ -175,7 +175,7 @@ receipts will read your paper, read your sources, and check every citation. When
 
 A detailed verdict for each citation showing exactly what's wrong and how to fix it:
 
-> ### 🔍 Verdict: Reference 1 — ADJUST
+> ### Verdict: Reference 1 — ADJUST
 >
 > Reference 1 is cited four times. Two citations are accurate. Two require correction.
 >
@@ -183,37 +183,37 @@ A detailed verdict for each citation showing exactly what's wrong and how to fix
 >
 > #### Instance 2
 >
-> 📄 **Your manuscript:**
+> **Your manuscript:**
 > > *"The optimal dropout probability is p=0.5 for all layers"*
 >
-> 📚 **Actual source:**
+> **Actual source:**
 > > *"All dropout nets use p=0.5 for hidden units and p=0.8 for input units."*
 >
-> ❌ **NOT SUPPORTED** — Different rates for hidden vs input layers
+> **NOT SUPPORTED** — Different rates for hidden vs input layers
 >
 > ---
 >
 > #### Instance 3
 >
-> 📄 **Your manuscript:**
+> **Your manuscript:**
 > > *"They achieved an error rate of 0.89% on MNIST"*
 >
-> 📚 **Actual source:**
+> **Actual source:**
 > > *"Error rates can be further improved to 0.94%"*
 >
-> ❌ **NOT SUPPORTED** — Wrong number (0.89% vs 0.94%)
+> **NOT SUPPORTED** — Wrong number (0.89% vs 0.94%)
 >
 > ---
 >
-> #### ✏️ Required Corrections
+> #### Required Corrections
 > 1. `p=0.5 for all layers` → `p=0.5 for hidden units and p=0.8 for input units`
 > 2. `0.89%` → `0.94%`
 
 | Status | Meaning |
 |--------|---------|
-| ✅ **VALID** | Citation is accurate |
-| ⚠️ **ADJUST** | Small fix needed |
-| ❌ **INVALID** | Source doesn't support claim |
+| **VALID** | Citation is accurate |
+| **ADJUST** | Small fix needed |
+| **INVALID** | Source doesn't support claim |
 
 ---
 
