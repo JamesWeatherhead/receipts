@@ -1,8 +1,8 @@
-# reciepts 🧾
+# reciepts
 
-**Show me the receipts on your citations.**
+**Parallel citation verification for scientific manuscripts.**
 
-A parallel multi-agent system that verifies your citations actually say what you claim they say.
+Verify that your citations actually say what you claim they say.
 
 ---
 
@@ -12,18 +12,18 @@ A parallel multi-agent system that verifies your citations actually say what you
 npx reciepts
 ```
 
-That's it. This installs slash commands to your Claude Code config (`~/.claude/commands/reciepts/`).
+Installs slash commands to `~/.claude/commands/reciepts/`.
 
 Then in Claude Code:
 
 ```
-/reciepts:help     # See all commands
-/reciepts:init     # Initialize a paper for verification
-/reciepts:verify   # Run parallel verification
-/reciepts:report   # Generate final report
+/reciepts:help      # See all commands
+/reciepts:init      # Initialize a paper
+/reciepts:verify    # Run verification
+/reciepts:report    # Generate report
 ```
 
-**Uninstall:**
+Uninstall:
 ```bash
 npx reciepts --uninstall
 ```
@@ -32,17 +32,17 @@ npx reciepts --uninstall
 
 ## The Problem
 
-GPTZero found [100+ fabricated citations](https://gptzero.me/news/neurips/) in NeurIPS 2025 papers. But that's just citations that *don't exist*.
+GPTZero found [100+ fabricated citations](https://gptzero.me/news/neurips/) in NeurIPS 2025 papers. But those are citations that *don't exist*.
 
 What about citations that exist but *don't support your claim*?
 
 - You wrote: "Smith et al. showed a 40% improvement"
-- Smith et al. actually wrote: "37-43% in limited conditions"
+- Smith et al. actually wrote: "37% improvement under limited conditions"
 
-- You wrote: "requires IRB waiver"
-- Source actually says: "requires IRB approval"
+- You wrote: "distributed under the MIT license"
+- Source actually says: "distributed under the BSD license"
 
-**That's the gap `reciepts` fills.**
+That's the gap reciepts fills.
 
 ---
 
@@ -50,40 +50,36 @@ What about citations that exist but *don't support your claim*?
 
 ```
 Your manuscript (50 citations)
-            │
-            ▼
-    ┌───────────────┐
-    │  Coordinator  │
-    │  Parse refs   │
-    └───────────────┘
-            │
-            ▼
-   ┌────────┼────────┐
-   ▼        ▼        ▼
+           |
+           v
+   ┌───────────────┐
+   │  Parse refs   │
+   └───────────────┘
+           |
+           v
+  ┌────────┼────────┐
+  v        v        v
 ┌─────┐  ┌─────┐  ┌─────┐
-│Agent│  │Agent│  │Agent│  ... (50 parallel agents)
+│Agent│  │Agent│  │Agent│  ... (parallel)
 │ #1  │  │ #2  │  │ #50 │
 └─────┘  └─────┘  └─────┘
-   │        │        │
-   ▼        ▼        ▼
+  │        │        │
+  v        v        v
 verdict  verdict  verdict
-  .md      .md      .md
-            │
-            ▼
-    ┌───────────────┐
-    │  Synthesizer  │
-    │  Aggregate    │
-    └───────────────┘
-            │
-            ▼
-      RECIEPTS.md
-      (full report)
+           |
+           v
+   ┌───────────────┐
+   │   Aggregate   │
+   └───────────────┘
+           |
+           v
+     RECIEPTS.md
 ```
 
-1. **You provide**: manuscript + source PDFs
+1. **You provide**: manuscript + source documents
 2. **System spawns**: one agent per citation (parallel)
-3. **Each agent**: reads your claim + reads source + writes verdict
-4. **You get**: receipts on every citation
+3. **Each agent**: extracts verbatim quotes from both documents
+4. **You get**: evidence-based verdicts on every citation
 
 ---
 
@@ -91,30 +87,69 @@ verdict  verdict  verdict
 
 | Status | Meaning | Action |
 |--------|---------|--------|
-| ✓ VALID | Source supports your claim | None |
-| ⚠️ ADJUST | Minor discrepancy | Edit your text |
-| ✗ INVALID | Source doesn't support claim | Fix or remove citation |
-| ? UNCLEAR | Can't verify | Get source, review manually |
+| VALID | Source supports your claim | None |
+| ADJUST | Minor discrepancy | Edit your text |
+| INVALID | Source doesn't support claim | Fix or remove citation |
+| UNCLEAR | Can't verify | Review manually |
 
 ---
 
 ## Example Verdict
 
 ```markdown
-STATUS: ⚠️ ADJUST
+---
+reference: 1
+status: ADJUST
+citation: "Srivastava et al. (2014). Dropout..."
+instances: 2
+---
 
-REFERENCE: Srivastava et al. (2014) - Dropout
+# Verdict: Reference 1
 
-## Instance 1
-📍 LOCATION: Section 2, paragraph 2
-📝 MANUSCRIPT SAYS (VERBATIM): "the optimal dropout probability is p=0.5 for all layers"
-📖 SOURCE SAYS (VERBATIM): "All dropout nets use p=0.5 for hidden units and p=0.8 for input units."
-⚖️ ASSESSMENT: Partially Supported
-🔍 DISCREPANCY: Manuscript oversimplifies - paper specifies different rates for hidden (0.5) vs input (0.8) layers
+## Summary
 
-## Verdict
-SUMMARY: The claim about p=0.5 is partially correct but omits the crucial detail that input layers use p=0.8.
-FIX NEEDED: Change "p=0.5 for all layers" to "p=0.5 for hidden units and p=0.8 for input units"
+Two claims about the Dropout paper need correction: the dropout rate
+recommendation oversimplifies the original guidance, and the MNIST
+error rate is misquoted.
+
+## Citation Instances
+
+### Instance 1
+
+**Location:** Section 2, paragraph 2
+
+**Manuscript claims:**
+> the optimal dropout probability is p=0.5 for all layers
+
+**Source states:**
+> All dropout nets use p=0.5 for hidden units and p=0.8 for input units.
+
+**Assessment:** PARTIALLY SUPPORTED
+
+**Discrepancy:** Manuscript oversimplifies - different rates for hidden (0.5) vs input (0.8) layers
+
+---
+
+### Instance 2
+
+**Location:** Section 2, paragraph 2
+
+**Manuscript claims:**
+> achieved an error rate of 0.89% on MNIST
+
+**Source states:**
+> Error rates can be further improved to 0.94%
+
+**Assessment:** NOT SUPPORTED
+
+**Discrepancy:** Wrong number: 0.89% vs 0.94%
+
+---
+
+## Required Corrections
+
+1. Change "p=0.5 for all layers" to "p=0.5 for hidden units and p=0.8 for input units"
+2. Change "0.89%" to "0.94%"
 ```
 
 ---
@@ -127,129 +162,99 @@ FIX NEEDED: Change "p=0.5 for all layers" to "p=0.5 for hidden units and p=0.8 f
 npx reciepts
 ```
 
-### 2. Setup a paper for verification
+### 2. Setup paper folder
 
 ```bash
-mkdir -p papers/my_paper/sources
-cp my_manuscript.pdf papers/my_paper/
-cp ref1.pdf ref2.pdf ref3.pdf papers/my_paper/sources/
+mkdir -p paper/sources
+cp manuscript.pdf paper/
+cp ref1.pdf ref2.pdf paper/sources/
 ```
 
 ### 3. Initialize and verify
 
 In Claude Code:
 ```
-/reciepts:init papers/my_paper
-/reciepts:verify papers/my_paper
+/reciepts:init paper
+/reciepts:verify paper
 ```
 
-### 4. Get your receipts
+### 4. Get report
 
 ```
-/reciepts:report papers/my_paper
+/reciepts:report paper
 ```
 
-Or directly:
+Or view directly:
 ```bash
-cat papers/my_paper/RECIEPTS.md
+cat paper/RECIEPTS.md
 ```
 
 ---
 
-## Validation Study
+## Comparison with GPTZero
 
-We validated `reciepts` on **51 NeurIPS 2025 papers** previously flagged by GPTZero for containing fabricated citations.
+| | GPTZero | reciepts |
+|-|---------|----------|
+| Question | Does this citation exist? | Does this citation support the claim? |
+| Method | Bibliographic verification | Semantic verification |
+| Catches | Fabricated references | Misrepresented references |
 
-**Finding**: Even among citations that *weren't* fabricated, [X]% did not accurately represent their sources.
-
-📄 Paper (coming soon) | 📊 Data (coming soon)
-
----
-
-## Why "receipts"?
-
-Because when someone questions your citations, you better have the receipts.
-
-This tool gives you—and Reviewer 2—the receipts.
+They're complementary. Run both.
 
 ---
 
 ## FAQ
 
-**Q: How is this different from GPTZero?**
+**Q: Do I need to provide the source documents?**
 
-| GPTZero | reciepts |
-|---------|----------|
-| Checks if citations *exist* | Checks if citations *support your claims* |
-| Bibliographic verification | Semantic verification |
-| Catches fake refs | Catches real refs used wrong |
+Yes. Download them, put them in `sources/`. The agents read them.
 
-They're complementary. Run both.
+**Q: What formats are supported?**
 
-**Q: Do I need to provide the source PDFs?**
-
-Yes. You download them, put them in the `sources/` folder. The agents read them.
+PDF, DOCX, and Markdown for both manuscript and sources.
 
 **Q: How long does it take?**
 
-~2-3 minutes for a paper with 50 citations. All agents run in parallel.
+Depends on document length, but agents run in parallel. A 50-citation paper typically completes in 2-3 minutes.
 
-**Q: Can this check my paper before I submit?**
+**Q: Can this check my paper before submission?**
 
-Yes. That's the point. Run it before you submit. Sleep better.
-
----
-
-## Legal Disclaimer
-
-**You are responsible for ensuring you have the right to upload any PDFs to Claude Code.**
-
-This tool requires you to provide source PDFs for verification. Before uploading any document:
-
-- Ensure you have legal access to the document (purchased, open access, institutional access, etc.)
-- Respect copyright and licensing terms
-- Do not upload documents you obtained through unauthorized means
-- Check your institution's policies on AI tool usage with copyrighted materials
-
-**The authors of this tool accept no responsibility for how you obtain or use source documents.** You alone are responsible for compliance with copyright law, publisher terms of service, and your institution's policies.
-
-When in doubt, use only:
-- Open access papers
-- Papers you authored
-- Documents explicitly licensed for this use
+Yes. That's the point. Run it before you submit.
 
 ---
 
-## For Claude Code Users
+## Commands
 
-This is a **slash command workflow** for Claude Code. Install with `npx reciepts` and you get:
-
-| Command | What it does |
-|---------|--------------|
+| Command | Description |
+|---------|-------------|
 | `/reciepts` | Overview and quick start |
 | `/reciepts:init <path>` | Parse manuscript, create checklist |
 | `/reciepts:verify <path>` | Spawn parallel verification agents |
-| `/reciepts:report <path>` | Generate final RECIEPTS.md report |
+| `/reciepts:report <path>` | Generate final report |
 | `/reciepts:help` | Show all commands |
-
-The agents read your manuscript + source PDFs and create detailed verdicts for every citation.
 
 ---
 
 ## Demo
 
-The `demo/` folder contains a working example with:
+The `demo/` folder contains a working example using real JMLR papers (CC BY 4.0):
 
-- A fake manuscript citing **real JMLR papers** (CC BY 4.0 licensed)
-- Intentional citation errors for reciepts to catch
-- Expected verdicts documented
-
-Papers used (legally reusable):
 - [Srivastava et al. (2014) - Dropout](https://jmlr.org/papers/v15/srivastava14a.html)
 - [Pedregosa et al. (2011) - Scikit-learn](https://jmlr.org/papers/v12/pedregosa11a.html)
 
-Try it:
-```bash
+The demo manuscript contains intentional errors that reciepts catches:
+
+| Reference | Error | Manuscript | Source |
+|-----------|-------|------------|--------|
+| Dropout | Rate | "p=0.5 for all layers" | "p=0.5 hidden, p=0.8 input" |
+| Dropout | MNIST | "0.89%" | "0.94%" |
+| Sklearn | Language | "entirely in Python" | "primarily in Python" |
+| Sklearn | Count | "100+ algorithms" | not specified |
+| Sklearn | Authors | "12" | "16" |
+| Sklearn | License | "MIT" | "BSD" |
+
+Run it:
+```
 cd demo
 /reciepts:init .
 /reciepts:verify .
@@ -258,9 +263,26 @@ cd demo
 
 ---
 
-## Citation
+## Legal Disclaimer
 
-If this tool saved your paper (or sank it), cite us:
+**You are responsible for ensuring you have the right to use any documents you upload.**
+
+Before uploading any document:
+
+- Ensure you have legal access (purchased, open access, institutional access)
+- Respect copyright and licensing terms
+- Check your institution's policies on AI tool usage
+
+The authors of this tool accept no responsibility for how you obtain or use source documents.
+
+Safe options:
+- Open access papers (look for CC BY license)
+- Papers you authored
+- Documents explicitly licensed for reuse
+
+---
+
+## Citation
 
 ```bibtex
 @software{reciepts2026,
@@ -275,8 +297,4 @@ If this tool saved your paper (or sank it), cite us:
 
 ## License
 
-MIT. Use it. Star it. Submit to NeurIPS with confidence.
-
----
-
-*"Because Reviewer 2 will find out anyway."*
+MIT

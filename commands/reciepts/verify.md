@@ -35,46 +35,71 @@ For each reference to verify:
 ## Agent Prompt Template
 
 ```
-You are a citation verification agent for reciepts.
+You are a citation verification agent.
 
 INPUTS:
-- Manuscript: <path>/manuscript.pdf
+- Manuscript: <path>/manuscript.pdf (or .md)
 - Reference #: [N]
 - Reference: "[Full citation text]"
-- Source: <path>/sources/[filename].pdf
+- Source: <path>/sources/[filename].pdf (or .md)
 
 TASK:
 1. Read the manuscript. Find ALL places where reference [N] is cited.
-2. For each citation, extract the VERBATIM claim being made (copy-paste exact words).
-3. Read the source PDF thoroughly.
-4. Find the VERBATIM passage in the source that relates to the claim (copy-paste exact words).
-5. Compare: Does the source support the claim?
+2. For each citation, extract the VERBATIM text making the claim (copy-paste exact words).
+3. Read the source document thoroughly.
+4. Find the VERBATIM passage in the source that relates to each claim (copy-paste exact words).
+5. Compare: Does the source support the claim as stated?
 
-CRITICAL: You MUST provide VERBATIM quotes. Not paraphrases. Not summaries.
-Copy the exact text from both documents. This creates an auditable evidence trail.
+CRITICAL REQUIREMENTS:
+- You MUST provide VERBATIM quotes from both documents
+- No paraphrasing. No summarizing. Copy-paste exact text.
+- Include page/section numbers where possible
+- This creates an auditable evidence trail
 
-OUTPUT: Write to <path>/verdicts/ref_[N]/verdict.md
+OUTPUT: Write verdict to <path>/verdicts/ref_[N]/verdict.md
 
-Format:
-```
-STATUS: [✓ VALID | ⚠️ ADJUST | ✗ INVALID | ? UNCLEAR]
+Use this exact format:
 
-REFERENCE: [citation]
+---
+reference: [N]
+status: [VALID | ADJUST | INVALID | UNCLEAR]
+citation: "[Full citation]"
+instances: [number of times cited]
+---
 
-## Instance 1
-📍 LOCATION: [section, page]
-📝 MANUSCRIPT SAYS (VERBATIM): "[copy-paste exact text from manuscript]"
-📖 SOURCE SAYS (VERBATIM): "[copy-paste exact text from source PDF]"
-⚖️ ASSESSMENT: [Supported/Not Supported/Contradicted]
-🔍 DISCREPANCY: [if any - be specific about wording differences]
+# Verdict: Reference [N]
 
-## Verdict
-SUMMARY: [one paragraph]
-FIX NEEDED: [specific fix or "None"]
-```
+## Summary
 
-IMPORTANT: Verbatim means verbatim. Do not paraphrase. Do not summarize.
-Copy-paste the exact words so the user can verify your assessment.
+[One paragraph summary of findings]
+
+## Citation Instances
+
+### Instance 1
+
+**Location:** [Section name, page/paragraph if available]
+
+**Manuscript claims:**
+> [VERBATIM quote from manuscript - copy-paste exact text]
+
+**Source states:**
+> [VERBATIM quote from source - copy-paste exact text]
+
+**Assessment:** [SUPPORTED | PARTIALLY SUPPORTED | NOT SUPPORTED | CONTRADICTED]
+
+**Discrepancy:** [Specific difference, or "None"]
+
+---
+
+[Repeat for each instance where this reference is cited]
+
+## Required Corrections
+
+[Numbered list of specific fixes needed, or "None required"]
+
+---
+
+Remember: Verbatim means verbatim. The user must be able to verify your assessment by finding these exact quotes in the documents.
 ```
 
 ## After All Agents Complete

@@ -2,10 +2,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const os = require('os');
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 const PACKAGE_NAME = 'reciepts';
 
 // Colors
@@ -15,9 +14,7 @@ const colors = {
   dim: '\x1b[2m',
   green: '\x1b[32m',
   yellow: '\x1b[33m',
-  blue: '\x1b[34m',
-  cyan: '\x1b[36m',
-  red: '\x1b[31m'
+  cyan: '\x1b[36m'
 };
 
 function log(msg, color = '') {
@@ -27,15 +24,10 @@ function log(msg, color = '') {
 function banner() {
   console.log(`
 ${colors.bright}${colors.cyan}
-  ██████╗ ███████╗ ██████╗██╗███████╗██████╗ ████████╗███████╗
-  ██╔══██╗██╔════╝██╔════╝██║██╔════╝██╔══██╗╚══██╔══╝██╔════╝
-  ██████╔╝█████╗  ██║     ██║█████╗  ██████╔╝   ██║   ███████╗
-  ██╔══██╗██╔══╝  ██║     ██║██╔══╝  ██╔═══╝    ██║   ╚════██║
-  ██║  ██║███████╗╚██████╗██║███████╗██║        ██║   ███████║
-  ╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝╚══════╝╚═╝        ╚═╝   ╚══════╝
+  reciepts v${VERSION}
+  ─────────────────────────────────────
+  Citation verification for manuscripts
 ${colors.reset}
-  ${colors.dim}Show me the receipts on your citations.${colors.reset}
-  ${colors.dim}v${VERSION}${colors.reset}
 `);
 }
 
@@ -70,23 +62,20 @@ function install() {
   const commandsDir = path.join(claudeDir, 'commands', 'reciepts');
   const agentsDir = path.join(claudeDir, 'agents');
 
-  // Find the package directory
   const packageDir = path.resolve(__dirname, '..');
   const srcCommandsDir = path.join(packageDir, 'commands', 'reciepts');
   const srcAgentsDir = path.join(packageDir, 'agents');
 
-  log('\n📦 Installing reciepts...', colors.cyan);
+  log('Installing...', colors.cyan);
 
-  // Install commands
   if (fs.existsSync(srcCommandsDir)) {
-    log('  → Installing slash commands...', colors.dim);
+    log('  Installing commands...', colors.dim);
     copyDir(srcCommandsDir, commandsDir);
-    log('  ✓ Commands installed to ~/.claude/commands/reciepts/', colors.green);
+    log('  [OK] Commands -> ~/.claude/commands/reciepts/', colors.green);
   }
 
-  // Install agents
   if (fs.existsSync(srcAgentsDir)) {
-    log('  → Installing agent prompts...', colors.dim);
+    log('  Installing agents...', colors.dim);
     const agentFiles = fs.readdirSync(srcAgentsDir);
     ensureDir(agentsDir);
     for (const file of agentFiles) {
@@ -97,20 +86,16 @@ function install() {
         );
       }
     }
-    log('  ✓ Agents installed to ~/.claude/agents/', colors.green);
+    log('  [OK] Agents -> ~/.claude/agents/', colors.green);
   }
 
-  log('\n✅ Installation complete!', colors.green);
-  log('\n📋 Available commands:', colors.bright);
-  log('  /reciepts:help     - Show help and usage', colors.dim);
-  log('  /reciepts:init     - Initialize paper for verification', colors.dim);
-  log('  /reciepts:verify   - Run verification swarm', colors.dim);
-  log('  /reciepts:report   - Generate final report', colors.dim);
-
-  log('\n🚀 Quick start:', colors.bright);
-  log('  1. Open Claude Code', colors.dim);
-  log('  2. Run: /reciepts:help', colors.dim);
-  log('\n💡 Tip: Restart Claude Code to load new commands.\n', colors.yellow);
+  log('\nInstallation complete.', colors.green);
+  log('\nCommands:', colors.bright);
+  log('  /reciepts:help     Show help', colors.dim);
+  log('  /reciepts:init     Initialize paper', colors.dim);
+  log('  /reciepts:verify   Run verification', colors.dim);
+  log('  /reciepts:report   Generate report', colors.dim);
+  log('\nRestart Claude Code to load commands.\n', colors.yellow);
 }
 
 function uninstall() {
@@ -118,15 +103,13 @@ function uninstall() {
   const commandsDir = path.join(claudeDir, 'commands', 'reciepts');
   const agentsDir = path.join(claudeDir, 'agents');
 
-  log('\n🗑️  Uninstalling reciepts...', colors.yellow);
+  log('Uninstalling...', colors.yellow);
 
-  // Remove commands
   if (fs.existsSync(commandsDir)) {
     fs.rmSync(commandsDir, { recursive: true });
-    log('  ✓ Commands removed', colors.green);
+    log('  [OK] Commands removed', colors.green);
   }
 
-  // Remove agents
   if (fs.existsSync(agentsDir)) {
     const agentFiles = fs.readdirSync(agentsDir);
     for (const file of agentFiles) {
@@ -134,10 +117,10 @@ function uninstall() {
         fs.unlinkSync(path.join(agentsDir, file));
       }
     }
-    log('  ✓ Agents removed', colors.green);
+    log('  [OK] Agents removed', colors.green);
   }
 
-  log('\n✅ Uninstall complete!\n', colors.green);
+  log('\nUninstall complete.\n', colors.green);
 }
 
 // Main
@@ -151,8 +134,8 @@ if (args.includes('--uninstall') || args.includes('-u')) {
   log('Usage: npx reciepts [options]', colors.bright);
   log('');
   log('Options:', colors.bright);
-  log('  --help, -h       Show this help message', colors.dim);
-  log('  --uninstall, -u  Remove reciepts from Claude Code', colors.dim);
+  log('  --help, -h       Show this help', colors.dim);
+  log('  --uninstall, -u  Remove from Claude Code', colors.dim);
   log('');
 } else {
   install();

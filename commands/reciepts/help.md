@@ -3,52 +3,63 @@ name: help
 description: Show reciepts help and usage
 ---
 
-# 🧾 reciepts - Citation Verification
+# reciepts
 
-**Show me the receipts on your citations.**
+Citation verification for scientific manuscripts.
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/reciepts:help` | Show this help |
-| `/reciepts:init <path>` | Initialize paper for verification |
-| `/reciepts:verify <path>` | Run verification swarm |
+| `/reciepts:init <path>` | Initialize paper folder, create checklist |
+| `/reciepts:verify <path>` | Run parallel verification agents |
 | `/reciepts:report <path>` | Generate final report |
+| `/reciepts:help` | Show this help |
 
-## Quick Start
+## Workflow
 
-```bash
-# 1. Create paper folder with manuscript + sources
-mkdir -p my_paper/sources
-cp manuscript.pdf my_paper/
-cp ref1.pdf ref2.pdf my_paper/sources/
-
-# 2. Initialize
-/reciepts:init my_paper
-
-# 3. Run verification
-/reciepts:verify my_paper
-
-# 4. Get report
-/reciepts:report my_paper
 ```
+1. Setup folder structure:
+   paper/
+   ├── manuscript.pdf
+   └── sources/
+       ├── ref_01_smith2023.pdf
+       ├── ref_02_jones2024.pdf
+       └── ...
 
-## What It Does
+2. Initialize:
+   /reciepts:init paper
 
-GPTZero finds fake citations. We find real citations that don't support your claims.
+3. Verify (spawns parallel agents):
+   /reciepts:verify paper
 
-| GPTZero | reciepts |
-|---------|----------|
-| "Does this ref exist?" | "Does this ref say what you claim?" |
-| Bibliographic check | Semantic verification |
+4. Generate report:
+   /reciepts:report paper
+
+5. Review:
+   paper/RECIEPTS.md
+```
 
 ## Verdict Categories
 
-- ✓ **VALID** - Source supports claim
-- ⚠️ **ADJUST** - Minor discrepancy
-- ✗ **INVALID** - Source doesn't support claim
-- ? **UNCLEAR** - Can't verify
+| Status | Meaning | Action Required |
+|--------|---------|-----------------|
+| VALID | Source supports the claim | None |
+| ADJUST | Minor discrepancy | Edit manuscript text |
+| INVALID | Source does not support claim | Fix or remove citation |
+| UNCLEAR | Cannot verify | Review manually |
 
----
-*"Because Reviewer 2 will find out anyway."*
+## What This Does
+
+GPTZero finds citations that don't exist. reciepts finds citations that exist but don't say what you claim.
+
+| Tool | Question |
+|------|----------|
+| GPTZero | Does this reference exist? |
+| reciepts | Does this reference support your claim? |
+
+## Output Files
+
+- `CHECKLIST.md` - Reference list and source availability
+- `verdicts/ref_N/verdict.md` - Individual verdict per reference
+- `RECIEPTS.md` - Final aggregated report
