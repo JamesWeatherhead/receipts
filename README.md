@@ -28,87 +28,117 @@ I built reciepts to fix that. One command. Parallel agents. Verbatim quotes. Don
 
 ---
 
-## Getting Started
+## Quick Start (5 minutes)
 
-### Step 1: Install Claude Code
+### 1. Install Claude Code
 
-reciepts runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Anthropic's AI coding tool.
+reciepts runs inside Claude Code. If you do not have it:
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-### Step 2: Install reciepts
+No npm? [Get Node.js first](https://nodejs.org/).
 
-Run this in your terminal:
+### 2. Install reciepts
 
-<p align="center">
-<img src="assets/screenshots/step1.png" alt="Step 1: npx reciepts" width="450">
-</p>
-
-This installs the `/reciepts` command into Claude Code. You only need to do this once.
-
-### Step 3: Set up your paper folder
-
-Put your manuscript and source PDFs in a folder like this:
+Open Terminal. Run this command:
 
 <p align="center">
-<img src="assets/screenshots/step2.png" alt="Step 2: Folder structure" width="350">
+<img src="assets/screenshots/step1.png" alt="Run npx reciepts" width="500">
 </p>
 
-- Your manuscript goes in the root
-- Source PDFs go in a `sources/` subfolder
-- Name sources to match your references (ref_01.pdf, ref_02.pdf, etc.)
+```bash
+npx reciepts
+```
 
-### Step 4: Run reciepts
+You will see a receipt banner. That means it worked. This installs the `/reciepts` command into Claude Code.
 
-Open Claude Code, navigate to your paper folder, and run:
+**You only do this once.**
+
+### 3. Set up your paper folder
+
+Create a folder with your manuscript and source PDFs:
 
 <p align="center">
-<img src="assets/screenshots/step3.png" alt="Step 3: Run /reciepts" width="500">
+<img src="assets/screenshots/step2.png" alt="Folder structure" width="380">
 </p>
 
-reciepts spawns one AI agent per citation, in parallel. 50 citations = 50 agents = 2 minutes.
+```
+thesis/
+├── my_dissertation.pdf    ← your paper (any name works)
+└── sources/               ← create this folder
+    ├── smith_2020.pdf     ← the PDFs you cited
+    ├── jones_2021.pdf
+    └── chen_2019.pdf
+```
 
-Each agent reads your claim, reads the source, compares them with verbatim quotes, and writes a verdict.
+**Important:**
+- Put your manuscript in the root folder
+- Create a `sources/` folder inside
+- Put all your cited PDFs in `sources/`
+- Name them however you want (reciepts will match them)
+
+### 4. Run reciepts
+
+Open Claude Code. Navigate to your paper folder. Type:
+
+<p align="center">
+<img src="assets/screenshots/step3.png" alt="Run /reciepts" width="500">
+</p>
+
+```
+/reciepts
+```
+
+That is it. reciepts will:
+1. Read your manuscript
+2. Find every citation
+3. Spawn one AI agent per citation (in parallel)
+4. Check each source for what it actually says
+5. Write a report to `RECIEPTS.md`
+
+50 citations = 50 agents = about 2 minutes.
 
 ---
 
-## The Problem
+## What You Get
 
-Your manuscript says:
-> "Smith et al. achieved **99% accuracy** [1]"
+A report showing every citation and whether it checks out:
 
-The source actually says:
-> "Our method achieves **73% accuracy**"
+```
+# Citation Verification Report
 
-This happens constantly:
-- You cited from memory (it has been six months)
-- You skimmed the abstract (who reads methods?)
-- An LLM "helped" you write it
-- You confused two papers with similar titles
+| Status  | Count |
+|---------|-------|
+| VALID   | 47    |
+| ADJUST  | 2     |
+| INVALID | 1     |
 
----
+## Issues Found
 
-## Verdicts
+### [23] Smith et al. (2020)
 
-| Status | Meaning |
-|--------|---------|
-| **VALID** | Source supports your claim |
-| **ADJUST** | Minor correction needed (numbers, wording) |
-| **INVALID** | Source contradicts or does not support claim |
+**Your claim:** "achieved 99% accuracy on all benchmarks"
+**Source says:** "achieves 73% accuracy on the standard benchmark"
+**Fix:** Change "99%" to "73%", remove "all benchmarks"
+```
+
+| Status | What it means |
+|--------|---------------|
+| **VALID** | Your citation is accurate |
+| **ADJUST** | Small fix needed (wrong number, slightly off wording) |
+| **INVALID** | Source does not support your claim at all |
 
 ---
 
 ## Cost
 
-Cheaper than retraction. More thorough than memory.
-
-| Paper Size | Refs | Haiku 3.5 | Sonnet 4 | Opus 4.5 |
-|------------|------|-----------|----------|----------|
-| Short (3 pages) | 10 | ~$0.50 | ~$2 | ~$9 |
-| Medium (5 pages) | 25 | ~$1.30 | ~$5 | ~$24 |
-| Full (10 pages) | 50 | ~$3 | ~$11 | ~$56 |
+| Paper Size | Citations | Haiku 3.5 | Sonnet 4 | Opus 4.5 |
+|------------|-----------|-----------|----------|----------|
+| Short | 10 | ~$0.50 | ~$2 | ~$9 |
+| Medium | 25 | ~$1.30 | ~$5 | ~$24 |
+| Full | 50 | ~$3 | ~$11 | ~$56 |
 
 Use Haiku for drafts. Opus for final submission. Your career is worth $56.
 
@@ -117,10 +147,26 @@ Use Haiku for drafts. Opus for final submission. Your career is worth $56.
 ## Who This Is For
 
 - PhD students submitting dissertations
-- Researchers publishing in peer reviewed journals
+- Researchers publishing papers
 - Graduate students writing theses
-- Authors using AI writing assistants
-- Reviewers who want to spot check papers
+- Anyone using AI writing assistants
+- Reviewers who want to spot check
+
+---
+
+## FAQ
+
+**Do I need an Anthropic API key?**
+Yes. Claude Code requires one. [Get it here](https://console.anthropic.com/).
+
+**What file formats work?**
+PDF, Markdown, and Word docs.
+
+**Can I exclude certain citations?**
+Yes. Create `excluded_refs.txt` and list the ones to skip.
+
+**What if a source PDF is missing?**
+reciepts will tell you which ones it could not find.
 
 ---
 
