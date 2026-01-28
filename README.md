@@ -105,15 +105,16 @@ STATUS: ⚠️ ADJUST
 
 REFERENCE: Srivastava et al. (2014) - Dropout
 
-📝 MANUSCRIPT SAYS (VERBATIM):
-> "the optimal dropout probability is p=0.5 for all layers"
+## Instance 1
+📍 LOCATION: Section 2, paragraph 2
+📝 MANUSCRIPT SAYS (VERBATIM): "the optimal dropout probability is p=0.5 for all layers"
+📖 SOURCE SAYS (VERBATIM): "All dropout nets use p=0.5 for hidden units and p=0.8 for input units."
+⚖️ ASSESSMENT: Partially Supported
+🔍 DISCREPANCY: Manuscript oversimplifies - paper specifies different rates for hidden (0.5) vs input (0.8) layers
 
-📖 SOURCE SAYS (VERBATIM):
-> "All dropout nets use p=0.5 for hidden units and p=0.8 for input units."
-
-🔍 DISCREPANCY: Manuscript oversimplifies - different rates for hidden vs input layers
-
-CORRECTION: Change "IRB waiver" to "IRB approval"
+## Verdict
+SUMMARY: The claim about p=0.5 is partially correct but omits the crucial detail that input layers use p=0.8.
+FIX NEEDED: Change "p=0.5 for all layers" to "p=0.5 for hidden units and p=0.8 for input units"
 ```
 
 ---
