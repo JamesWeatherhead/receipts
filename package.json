@@ -1,6 +1,6 @@
 {
   "name": "reciepts",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Verify your citations say what you claim. One command.",
   "keywords": [
     "citations",
@@ -28,5 +28,8 @@
     "commands/",
     "agents/",
     "demo/"
-  ]
+  ],
+  "devDependencies": {
+    "puppeteer": "^24.36.1"
+  }
 }

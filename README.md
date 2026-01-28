@@ -11,14 +11,6 @@
 </p>
 
 <p align="center">
-<a href="#why-i-built-this">Why I Built This</a> ·
-<a href="#the-problem">The Problem</a> ·
-<a href="#how-it-works">How It Works</a> ·
-<a href="#cost">Cost</a> ·
-<a href="#install">Install</a>
-</p>
-
-<p align="center">
 <img src="assets/terminal.png" alt="reciepts" width="550">
 </p>
 
@@ -36,6 +28,52 @@ I built reciepts to fix that. One command. Parallel agents. Verbatim quotes. Don
 
 ---
 
+## Getting Started
+
+### Step 1: Install Claude Code
+
+reciepts runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Anthropic's AI coding tool.
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+### Step 2: Install reciepts
+
+Run this in your terminal:
+
+<p align="center">
+<img src="assets/screenshots/step1.png" alt="Step 1: npx reciepts" width="450">
+</p>
+
+This installs the `/reciepts` command into Claude Code. You only need to do this once.
+
+### Step 3: Set up your paper folder
+
+Put your manuscript and source PDFs in a folder like this:
+
+<p align="center">
+<img src="assets/screenshots/step2.png" alt="Step 2: Folder structure" width="350">
+</p>
+
+- Your manuscript goes in the root
+- Source PDFs go in a `sources/` subfolder
+- Name sources to match your references (ref_01.pdf, ref_02.pdf, etc.)
+
+### Step 4: Run reciepts
+
+Open Claude Code, navigate to your paper folder, and run:
+
+<p align="center">
+<img src="assets/screenshots/step3.png" alt="Step 3: Run /reciepts" width="500">
+</p>
+
+reciepts spawns one AI agent per citation, in parallel. 50 citations = 50 agents = 2 minutes.
+
+Each agent reads your claim, reads the source, compares them with verbatim quotes, and writes a verdict.
+
+---
+
 ## The Problem
 
 Your manuscript says:
@@ -49,55 +87,6 @@ This happens constantly:
 - You skimmed the abstract (who reads methods?)
 - An LLM "helped" you write it
 - You confused two papers with similar titles
-
----
-
-## How It Works
-
-```
-paper/
-├── manuscript.pdf
-└── sources/
-    ├── ref_01.pdf
-    ├── ref_02.pdf
-    └── ...
-```
-
-Run one command:
-
-```
-/reciepts paper/
-```
-
-reciepts spawns one AI agent per citation, in parallel. 50 citations = 50 agents = 2 minutes.
-
-Each agent:
-1. Reads your manuscript, finds the claim
-2. Reads the source, finds what it actually says
-3. Compares them with verbatim quotes
-4. Writes a verdict: VALID, ADJUST, or INVALID
-
-You get a report:
-
-```
-# Citation Verification Report
-
-| Status  | Count |
-|---------|-------|
-| VALID   | 47    |
-| ADJUST  | 2     |
-| INVALID | 1     |
-
-## Issues Found
-
-### [23] Smith et al. (2020)
-
-**Claim:** "achieved 99% accuracy on all benchmarks"
-**Source:** "achieves 73% accuracy on the standard benchmark"
-**Fix:** Change "99%" to "73%", remove "all benchmarks"
-```
-
-Fix before your reviewer finds it.
 
 ---
 
@@ -122,22 +111,6 @@ Cheaper than retraction. More thorough than memory.
 | Full (10 pages) | 50 | ~$3 | ~$11 | ~$56 |
 
 Use Haiku for drafts. Opus for final submission. Your career is worth $56.
-
----
-
-## Install
-
-Requires [Claude Code](https://claude.ai/code).
-
-```bash
-npx reciepts
-```
-
-Then run:
-
-```
-/reciepts <path-to-paper-folder>
-```
 
 ---
 
