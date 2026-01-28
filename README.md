@@ -69,6 +69,23 @@ reciepts catches this:
 | ADJUST | Minor fix needed |
 | INVALID | Source doesn't support claim |
 
+## Cost
+
+reciepts spawns one agent per reference (parallel). Cost depends on paper size and model.
+
+| Paper Size | References | Opus 4.5 | Sonnet 4 | Haiku 3.5 |
+|------------|------------|----------|----------|-----------|
+| Small (3 pages) | 10 | ~$9 | ~$2 | ~$0.50 |
+| Medium (5 pages) | 25 | ~$24 | ~$5 | ~$1.30 |
+| Large (10 pages) | 50 | ~$56 | ~$11 | ~$3 |
+
+**Estimates assume:**
+- Average source PDF ~10 pages
+- Manuscript + source + verdict per reference
+- Prices: Opus $15/$75, Sonnet $3/$15, Haiku $0.80/$4 per 1M tokens (input/output)
+
+**Recommendation:** Use Haiku for initial passes, Opus for final verification.
+
 ## Why
 
 GPTZero finds fake citations. reciepts finds real citations that don't say what you claim.
