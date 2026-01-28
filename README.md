@@ -1,6 +1,121 @@
-# reciepts
+# RECIEPTS
 
-Verify your citations say what you claim.
+**Verify your citations actually say what you claim they say.**
+
+Every academic knows the fear: *Did I remember that paper correctly?* You cited 50 sources. You're not re-reading all of them. Neither is your reviewer. But what if one says the opposite of what you wrote?
+
+[![npm version](https://img.shields.io/npm/v/reciepts.svg)](https://www.npmjs.com/package/reciepts)
+[![npm downloads](https://img.shields.io/npm/dm/reciepts.svg)](https://www.npmjs.com/package/reciepts)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+```bash
+npx reciepts
+```
+
+Works on Mac, Windows, and Linux.
+
+---
+
+## The Problem
+
+Your manuscript says:
+> "Smith et al. achieved **99% accuracy** [1]"
+
+The source actually says:
+> "Our method achieves **73% accuracy**"
+
+This happens constantly:
+- You cited from memory
+- You misread the abstract
+- An LLM "helped" you write it
+- You confused two similar papers
+
+**GPTZero finds fake citations. reciepts finds real citations that don't say what you claim.**
+
+---
+
+## How It Works
+
+```
+paper/
+├── manuscript.pdf      # Your paper
+└── sources/
+    ├── ref_01.pdf      # The papers you cited
+    ├── ref_02.pdf
+    └── ...
+```
+
+Run one command:
+
+```
+/reciepts paper/
+```
+
+reciepts spawns **one AI agent per citation** (parallel). Each agent:
+1. Reads your manuscript - finds the claim
+2. Reads the source - finds what it actually says
+3. Compares them - verbatim quotes, no paraphrasing
+4. Writes a verdict - VALID, ADJUST, or INVALID
+
+You get a report:
+
+```
+# Citation Verification Report
+
+| Status  | Count |
+|---------|-------|
+| VALID   | 47    |
+| ADJUST  | 2     |
+| INVALID | 1     |
+
+## Issues Found
+
+### [23] Smith et al. (2020)
+
+**Claim:** "achieved 99% accuracy on all benchmarks"
+**Source:** "achieves 73% accuracy on the standard benchmark"
+**Fix:** Change "99%" to "73%", remove "all benchmarks"
+```
+
+Fix before your reviewer finds it.
+
+---
+
+## Cost
+
+One agent per reference. Cost depends on paper size and model.
+
+| Paper Size | Refs | Opus 4.5 | Sonnet 4 | Haiku 3.5 |
+|------------|------|----------|----------|-----------|
+| Short (3 pages) | 10 | ~$9 | ~$2 | ~$0.50 |
+| Medium (5 pages) | 25 | ~$24 | ~$5 | ~$1.30 |
+| Full (10 pages) | 50 | ~$56 | ~$11 | ~$3 |
+
+**Recommendation:** Haiku for drafts. Opus for final submission.
+
+---
+
+## Why I Built This
+
+I review papers. I've seen citations that say the literal opposite of what the manuscript claims. Not maliciously—just human error. Memory is unreliable. Reading is hard. Deadlines are real.
+
+LLMs made this worse. They confidently generate citation text that sounds right but isn't. The paper exists. The author exists. The claim? Fabricated.
+
+Existing tools catch fake citations (papers that don't exist). Nothing catches **wrong citations** (papers that exist but don't support your claim).
+
+So I built reciepts. One command. Parallel agents. Verbatim quotes. No bullshit.
+
+---
+
+## Verdicts
+
+| Status | Meaning |
+|--------|---------|
+| **VALID** | Source supports your claim |
+| **ADJUST** | Minor correction needed (numbers, wording) |
+| **INVALID** | Source contradicts or doesn't support claim |
+
+---
 
 ## Install
 
@@ -8,92 +123,24 @@ Verify your citations say what you claim.
 npx reciepts
 ```
 
-## Use
+Then in Claude Code:
 
 ```
-/reciepts <path>
+/reciepts <path-to-paper-folder>
 ```
 
-One command. Done.
-
-## Setup
-
-```
-paper/
-├── manuscript.pdf
-└── sources/
-    ├── ref_01.pdf
-    ├── ref_02.pdf
-    └── ...
-```
-
-Put your manuscript in a folder. Put source PDFs in `sources/`. Run reciepts.
-
-## Output
-
-```
-paper/
-├── manuscript.pdf
-├── sources/
-├── verdicts/
-│   ├── ref_01.md
-│   └── ref_02.md
-└── RECIEPTS.md      <- Your report
-```
-
-## Example
-
-Your manuscript says:
-> Smith et al. achieved 99% accuracy [1]
-
-Source actually says:
-> Our method achieves 73% accuracy
-
-reciepts catches this:
-
-```
-**Claim:** Smith et al. achieved 99% accuracy
-
-**Source:** Our method achieves 73% accuracy
-
-**Assessment:** CONTRADICTED
-
-**Fix:** Change "99%" to "73%"
-```
-
-## Verdicts
-
-| Status | Meaning |
-|--------|---------|
-| VALID | Source supports claim |
-| ADJUST | Minor fix needed |
-| INVALID | Source doesn't support claim |
-
-## Cost
-
-reciepts spawns one agent per reference (parallel). Cost depends on paper size and model.
-
-| Paper Size | References | Opus 4.5 | Sonnet 4 | Haiku 3.5 |
-|------------|------------|----------|----------|-----------|
-| Small (3 pages) | 10 | ~$9 | ~$2 | ~$0.50 |
-| Medium (5 pages) | 25 | ~$24 | ~$5 | ~$1.30 |
-| Large (10 pages) | 50 | ~$56 | ~$11 | ~$3 |
-
-**Estimates assume:**
-- Average source PDF ~10 pages
-- Manuscript + source + verdict per reference
-- Prices: Opus $15/$75, Sonnet $3/$15, Haiku $0.80/$4 per 1M tokens (input/output)
-
-**Recommendation:** Use Haiku for initial passes, Opus for final verification.
-
-## Why
-
-GPTZero finds fake citations. reciepts finds real citations that don't say what you claim.
+---
 
 ## Legal
 
-You're responsible for having rights to the PDFs you upload. Use open access papers, your own work, or properly licensed documents.
+You need rights to the PDFs you verify. Use open access papers, your own manuscripts, or properly licensed documents.
+
+---
 
 ## License
 
 MIT
+
+---
+
+**Your citations are only as good as your memory. reciepts is better than your memory.**
