@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.8.1';
+const VERSION = '0.8.2';
 const PACKAGE_NAME = 'reciepts';
 
 // Colors
@@ -31,7 +31,7 @@ function banner() {
   console.log(`
     ┌─────────────────────────────────┐
     │                                 │
-    │  R E C I E P T S                │
+    │  R E C E I P T S                │
     │  Citation  Verification         │
     │  by: James Weatherhead          │
     │                                 │

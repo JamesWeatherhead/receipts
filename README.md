@@ -1,4 +1,4 @@
-<h1 align="center">RECIEPTS</h1>
+<h1 align="center">RECEIPTS</h1>
 
 <p align="center">
 <strong>GPTZero: "Is this citation real?"<br>reciepts: "Is this citation <em>right</em>?"</strong>
