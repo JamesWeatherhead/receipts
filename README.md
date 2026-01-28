@@ -1,25 +1,38 @@
 <h1 align="center">RECIEPTS</h1>
 
 <p align="center">
-<strong>Verify your citations actually say what you claim they say.</strong>
-<br><br>
-Every academic knows the fear: <em>Did I remember that paper correctly?</em> You cited 50 sources. You're not re-reading all of them. Neither is your reviewer. But what if one says the opposite of what you wrote?
+<strong>GPTZero finds fake citations. reciepts finds real citations that don't say what you claim.</strong>
 </p>
 
 <p align="center">
 <a href="https://www.npmjs.com/package/reciepts"><img src="https://img.shields.io/npm/v/reciepts.svg" alt="npm version"></a>
+<a href="https://github.com/JamesWeatherhead/reciepts/stargazers"><img src="https://img.shields.io/github/stars/JamesWeatherhead/reciepts" alt="GitHub stars"></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
 </p>
 
-```bash
-npx reciepts
-```
-
-<p align="center">Works on Mac, Windows, and Linux.</p>
+<p align="center">
+<a href="#why-i-built-this">Why I Built This</a> ·
+<a href="#the-problem">The Problem</a> ·
+<a href="#how-it-works">How It Works</a> ·
+<a href="#cost">Cost</a> ·
+<a href="#install">Install</a>
+</p>
 
 <p align="center">
-<img src="assets/terminal.png" alt="reciepts install" width="600">
+<img src="assets/terminal.png" alt="reciepts" width="550">
 </p>
+
+---
+
+## Why I Built This
+
+I review papers. I have seen citations that say the literal opposite of what the manuscript claims. Not fraud. Just human error. Memory is unreliable. Reading is hard. Deadlines are real.
+
+LLMs made this worse. They confidently generate citation text that sounds right but is not. The paper exists. The author exists. The claim? Fabricated. [GPTZero found 100 hallucinated citations across 51 papers at NeurIPS 2024](https://techcrunch.com/2026/01/21/irony-alert-hallucinated-citations-found-in-papers-from-neurips-the-prestigious-ai-conference/). Those are the fake ones.
+
+Nobody is counting the real papers that do not say what authors claim.
+
+I built reciepts to fix that. One command. Parallel agents. Verbatim quotes. Done.
 
 ---
 
@@ -32,12 +45,10 @@ The source actually says:
 > "Our method achieves **73% accuracy**"
 
 This happens constantly:
-- You cited from memory
-- You misread the abstract
+- You cited from memory (it has been six months)
+- You skimmed the abstract (who reads methods?)
 - An LLM "helped" you write it
-- You confused two similar papers
-
-**GPTZero finds fake citations. reciepts finds real citations that don't say what you claim.**
+- You confused two papers with similar titles
 
 ---
 
@@ -45,9 +56,9 @@ This happens constantly:
 
 ```
 paper/
-├── manuscript.pdf      # Your paper
+├── manuscript.pdf
 └── sources/
-    ├── ref_01.pdf      # The papers you cited
+    ├── ref_01.pdf
     ├── ref_02.pdf
     └── ...
 ```
@@ -58,11 +69,13 @@ Run one command:
 /reciepts paper/
 ```
 
-reciepts spawns **one AI agent per citation** (parallel). Each agent:
-1. Reads your manuscript - finds the claim
-2. Reads the source - finds what it actually says
-3. Compares them - verbatim quotes, no paraphrasing
-4. Writes a verdict - VALID, ADJUST, or INVALID
+reciepts spawns one AI agent per citation, in parallel. 50 citations = 50 agents = 2 minutes.
+
+Each agent:
+1. Reads your manuscript, finds the claim
+2. Reads the source, finds what it actually says
+3. Compares them with verbatim quotes
+4. Writes a verdict: VALID, ADJUST, or INVALID
 
 You get a report:
 
@@ -88,53 +101,53 @@ Fix before your reviewer finds it.
 
 ---
 
-## Cost
-
-One agent per reference. Cost depends on paper size and model.
-
-| Paper Size | Refs | Opus 4.5 | Sonnet 4 | Haiku 3.5 |
-|------------|------|----------|----------|-----------|
-| Short (3 pages) | 10 | ~$9 | ~$2 | ~$0.50 |
-| Medium (5 pages) | 25 | ~$24 | ~$5 | ~$1.30 |
-| Full (10 pages) | 50 | ~$56 | ~$11 | ~$3 |
-
-**Recommendation:** Haiku for drafts. Opus for final submission.
-
----
-
-## Why I Built This
-
-I review papers. I've seen citations that say the literal opposite of what the manuscript claims. Not maliciously—just human error. Memory is unreliable. Reading is hard. Deadlines are real.
-
-LLMs made this worse. They confidently generate citation text that sounds right but isn't. The paper exists. The author exists. The claim? Fabricated. [GPTZero found 100 hallucinated citations across 51 papers at NeurIPS 2024](https://techcrunch.com/2026/01/21/irony-alert-hallucinated-citations-found-in-papers-from-neurips-the-prestigious-ai-conference/) — and those are just the fake ones.
-
-Existing tools catch fake citations (papers that don't exist). Nothing catches **wrong citations** (papers that exist but don't support your claim).
-
-So I built reciepts. One command. Parallel agents. Verbatim quotes. No bullshit.
-
----
-
 ## Verdicts
 
 | Status | Meaning |
 |--------|---------|
 | **VALID** | Source supports your claim |
 | **ADJUST** | Minor correction needed (numbers, wording) |
-| **INVALID** | Source contradicts or doesn't support claim |
+| **INVALID** | Source contradicts or does not support claim |
+
+---
+
+## Cost
+
+Cheaper than retraction. More thorough than memory.
+
+| Paper Size | Refs | Haiku 3.5 | Sonnet 4 | Opus 4.5 |
+|------------|------|-----------|----------|----------|
+| Short (3 pages) | 10 | ~$0.50 | ~$2 | ~$9 |
+| Medium (5 pages) | 25 | ~$1.30 | ~$5 | ~$24 |
+| Full (10 pages) | 50 | ~$3 | ~$11 | ~$56 |
+
+Use Haiku for drafts. Opus for final submission. Your career is worth $56.
 
 ---
 
 ## Install
 
+Requires [Claude Code](https://claude.ai/code).
+
 ```bash
 npx reciepts
 ```
 
-Then in Claude Code:
+Then run:
 
 ```
 /reciepts <path-to-paper-folder>
 ```
+
+---
+
+## Who This Is For
+
+- PhD students submitting dissertations
+- Researchers publishing in peer reviewed journals
+- Graduate students writing theses
+- Authors using AI writing assistants
+- Reviewers who want to spot check papers
 
 ---
 
