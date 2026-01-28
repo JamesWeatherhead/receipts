@@ -103,14 +103,15 @@ verdict  verdict  verdict
 ```markdown
 STATUS: ⚠️ ADJUST
 
-CLAIM IN PAPER:
-> "Epic SlicerDicer requires IRB waiver for cohorts of 11 or fewer patients"
+REFERENCE: Srivastava et al. (2014) - Dropout
 
-WHAT SOURCE ACTUALLY SAYS:
-> "cohorts of 11 or fewer require IRB approval when viewing low cohort
-> numbers via Epic reporting tools"
+📝 MANUSCRIPT SAYS (VERBATIM):
+> "the optimal dropout probability is p=0.5 for all layers"
 
-DISCREPANCY: "waiver" ≠ "approval"
+📖 SOURCE SAYS (VERBATIM):
+> "All dropout nets use p=0.5 for hidden units and p=0.8 for input units."
+
+🔍 DISCREPANCY: Manuscript oversimplifies - different rates for hidden vs input layers
 
 CORRECTION: Change "IRB waiver" to "IRB approval"
 ```
@@ -231,6 +232,28 @@ This is a **slash command workflow** for Claude Code. Install with `npx reciepts
 | `/reciepts:help` | Show all commands |
 
 The agents read your manuscript + source PDFs and create detailed verdicts for every citation.
+
+---
+
+## Demo
+
+The `demo/` folder contains a working example with:
+
+- A fake manuscript citing **real JMLR papers** (CC BY 4.0 licensed)
+- Intentional citation errors for reciepts to catch
+- Expected verdicts documented
+
+Papers used (legally reusable):
+- [Srivastava et al. (2014) - Dropout](https://jmlr.org/papers/v15/srivastava14a.html)
+- [Pedregosa et al. (2011) - Scikit-learn](https://jmlr.org/papers/v12/pedregosa11a.html)
+
+Try it:
+```bash
+cd demo
+/reciepts:init .
+/reciepts:verify .
+/reciepts:report .
+```
 
 ---
 
