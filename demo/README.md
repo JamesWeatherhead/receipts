@@ -1,4 +1,4 @@
-# reciepts Demo
+# receipts Demo
 
 Working example using real JMLR papers (CC BY 4.0 licensed).
 
@@ -40,9 +40,9 @@ Both source papers are legally reusable under Creative Commons Attribution 4.0:
 ## Running the Demo
 
 ```
-/reciepts:init .
-/reciepts:verify .
-/reciepts:report .
+/receipts:init .
+/receipts:verify .
+/receipts:report .
 ```
 
 ## License
