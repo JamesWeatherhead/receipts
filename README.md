@@ -14,6 +14,10 @@ npx reciepts
 
 Works on Mac, Windows, and Linux.
 
+<p align="center">
+  <img src="assets/terminal.png" alt="reciepts install" width="500">
+</p>
+
 ---
 
 ## The Problem
