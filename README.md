@@ -32,15 +32,25 @@ I built reciepts to fix that. One command. Parallel agents. Verbatim quotes. Don
 
 ### Step 1: Install Claude Code
 
-Open Terminal. Run this:
+Open Terminal. Copy and run this:
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
 
 <p align="center">
 <img src="assets/screenshots/step0.png" alt="Install Claude Code" width="550">
 </p>
 
+---
+
 ### Step 2: Install reciepts
 
-Run this:
+Copy and run this:
+
+```bash
+npx reciepts
+```
 
 <p align="center">
 <img src="assets/screenshots/step1.png" alt="Install reciepts" width="500">
@@ -48,17 +58,34 @@ Run this:
 
 You will see a receipt banner. That means it worked.
 
+---
+
 ### Step 3: Set up your folder
 
 <p align="center">
 <img src="assets/screenshots/step2.png" alt="Folder structure" width="380">
 </p>
 
-Put your paper in a folder. Create a `sources/` subfolder. Put your cited PDFs inside.
+Create a folder like this:
+
+```
+thesis/
+├── my_dissertation.pdf      ← your paper goes here
+└── sources/                 ← create this folder
+    ├── smith_2020.pdf       ← put your cited PDFs here
+    ├── jones_2021.pdf
+    └── chen_2019.pdf
+```
+
+---
 
 ### Step 4: Run reciepts
 
-Open Claude Code in your paper folder. Type `/reciepts`:
+Open Claude Code in your paper folder. Type this:
+
+```
+/reciepts
+```
 
 <p align="center">
 <img src="assets/screenshots/step3.png" alt="Run reciepts" width="500">
