@@ -44,9 +44,12 @@ node --version
 
 If you see a version number, you're good. If you see "command not found", download Node.js from **[nodejs.org](https://nodejs.org/)** and install it.
 
-### 2. Anthropic API Key
+### 2. Anthropic API Key or Pro/Max Plan
 
-You need an API key to use Claude Code. Get one at **[console.anthropic.com](https://console.anthropic.com/)**. You will need to add a payment method. Keep the key handy.
+You need one of these to use Claude Code:
+
+- **API key:** Get one at **[console.anthropic.com](https://console.anthropic.com/)**. Requires a payment method.
+- **Pro or Max plan:** If you subscribe to Claude Pro ($20/mo) or Max ($100/mo), you can use Claude Code without a separate API key.
 
 ---
 
@@ -226,7 +229,7 @@ Create a folder called exactly `sources` (lowercase) and put your cited PDFs ins
 
 **Claude Code asks for an API key**
 
-Get one at [console.anthropic.com](https://console.anthropic.com/). You need to add a payment method first.
+Either get an API key at [console.anthropic.com](https://console.anthropic.com/), or subscribe to Claude Pro/Max at [claude.ai](https://claude.ai/).
 
 ---
 
