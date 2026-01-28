@@ -1,21 +1,32 @@
-# RECIEPTS
+<h1 align="center">RECIEPTS</h1>
 
-**Verify your citations actually say what you claim they say.**
+<p align="center">
+<strong>Verify your citations actually say what you claim they say.</strong>
+</p>
 
-Every academic knows the fear: *Did I remember that paper correctly?* You cited 50 sources. You're not re-reading all of them. Neither is your reviewer. But what if one says the opposite of what you wrote?
+<p align="center">
+Every academic knows the fear: <em>Did I remember that paper correctly?</em> You cited 50 sources. You're not re-reading all of them. Neither is your reviewer. But what if one says the opposite of what you wrote?
+</p>
 
-[![npm version](https://img.shields.io/npm/v/reciepts.svg)](https://www.npmjs.com/package/reciepts)
-[![npm downloads](https://img.shields.io/npm/dm/reciepts.svg)](https://www.npmjs.com/package/reciepts)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+<a href="https://www.npmjs.com/package/reciepts"><img src="https://img.shields.io/npm/v/reciepts.svg" alt="npm version"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+</p>
+
+<p align="center">
 
 ```bash
 npx reciepts
 ```
 
-Works on Mac, Windows, and Linux.
+</p>
 
 <p align="center">
-  <img src="assets/terminal.png" alt="reciepts install" width="500">
+Works on Mac, Windows, and Linux.
+</p>
+
+<p align="center">
+  <img src="assets/terminal.png" alt="reciepts install" width="600">
 </p>
 
 ---
@@ -147,4 +158,6 @@ MIT
 
 ---
 
-**Your citations are only as good as your memory. reciepts is better than your memory.**
+<p align="center">
+<strong>Your citations are only as good as your memory. reciepts is better than your memory.</strong>
+</p>
