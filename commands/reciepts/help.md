@@ -1,65 +1,53 @@
 ---
 name: help
-description: Show reciepts help and usage
+description: Show reciepts help
 ---
 
 # reciepts
 
-Citation verification for scientific manuscripts.
+Verify your citations say what you claim.
 
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/reciepts:init <path>` | Initialize paper folder, create checklist |
-| `/reciepts:verify <path>` | Run parallel verification agents |
-| `/reciepts:report <path>` | Generate final report |
-| `/reciepts:help` | Show this help |
-
-## Workflow
+## Usage
 
 ```
-1. Setup folder structure:
-   paper/
-   ├── manuscript.pdf
-   └── sources/
-       ├── ref_01_smith2023.pdf
-       ├── ref_02_jones2024.pdf
-       └── ...
-
-2. Initialize:
-   /reciepts:init paper
-
-3. Verify (spawns parallel agents):
-   /reciepts:verify paper
-
-4. Generate report:
-   /reciepts:report paper
-
-5. Review:
-   paper/RECIEPTS.md
+/reciepts <path>
 ```
 
-## Verdict Categories
+That's it. One command.
 
-| Status | Meaning | Action Required |
-|--------|---------|-----------------|
-| VALID | Source supports the claim | None |
-| ADJUST | Minor discrepancy | Edit manuscript text |
-| INVALID | Source does not support claim | Fix or remove citation |
-| UNCLEAR | Cannot verify | Review manually |
+## Setup
 
-## What This Does
+```
+paper/
+├── manuscript.pdf    # Your paper
+└── sources/
+    ├── ref_01.pdf    # Source for reference 1
+    ├── ref_02.pdf    # Source for reference 2
+    └── ...
+```
 
-GPTZero finds citations that don't exist. reciepts finds citations that exist but don't say what you claim.
+## What Happens
 
-| Tool | Question |
-|------|----------|
-| GPTZero | Does this reference exist? |
-| reciepts | Does this reference support your claim? |
+1. Finds your manuscript
+2. Finds sources in sources/
+3. Spawns one agent per reference (parallel)
+4. Each agent extracts verbatim quotes
+5. Writes RECIEPTS.md with all findings
 
-## Output Files
+## Output
 
-- `CHECKLIST.md` - Reference list and source availability
-- `verdicts/ref_N/verdict.md` - Individual verdict per reference
-- `RECIEPTS.md` - Final aggregated report
+```
+paper/
+├── manuscript.pdf
+├── sources/
+├── verdicts/
+│   ├── ref_01.md
+│   └── ref_02.md
+└── RECIEPTS.md      <- Your report
+```
+
+## Verdicts
+
+- **VALID** - Source supports your claim
+- **ADJUST** - Minor fix needed
+- **INVALID** - Source doesn't support claim

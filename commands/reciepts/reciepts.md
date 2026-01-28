@@ -1,36 +1,105 @@
 ---
 name: reciepts
-description: Citation verification - show me the receipts
+description: Verify citations in a manuscript
+arguments:
+  - name: path
+    description: Path to folder with manuscript and sources/
+    required: true
 ---
 
 # reciepts
 
-Verify that your citations actually say what you claim they say.
+Verify that citations say what you claim they say.
 
-Run `/reciepts:help` for commands.
+## Your Task
 
-## Quick Start
+Given a path, do everything in one shot:
+
+1. **Find the manuscript** - Look for .pdf, .md, or .docx in the folder root
+2. **Find sources** - Look in `<path>/sources/` for reference documents
+3. **Parse references** - Extract the reference list from the manuscript
+4. **Verify each reference** - Spawn one agent per reference (parallel)
+5. **Generate report** - Write RECIEPTS.md with all findings
+
+## Spawn Verification Agents
+
+For each reference that has a matching source file, spawn an agent:
 
 ```
-1. /reciepts:init <path>    # Setup and create checklist
-2. /reciepts:verify <path>  # Run verification agents
-3. /reciepts:report <path>  # Generate final report
+Task(
+  subagent_type: "general-purpose",
+  description: "Verify ref [N]",
+  prompt: """
+You are verifying a citation.
+
+Manuscript: <path>/[manuscript file]
+Reference: [N] - "[citation text]"
+Source: <path>/sources/[source file]
+
+Instructions:
+1. Read the manuscript. Find where reference [N] is cited.
+2. Copy the EXACT text making the claim.
+3. Read the source document.
+4. Copy the EXACT text from the source.
+5. Compare: Does the source support the claim?
+
+Write to <path>/verdicts/ref_[N].md:
+
+---
+ref: [N]
+status: [VALID | ADJUST | INVALID]
+---
+
+**Claim:** [verbatim from manuscript]
+
+**Source:** [verbatim from source]
+
+**Assessment:** [SUPPORTED | NOT SUPPORTED | CONTRADICTED]
+
+**Fix:** [specific correction needed, or "None"]
+"""
+)
 ```
 
-## What This Does
+Launch ALL agents in ONE message (parallel execution).
 
-Spawns one agent per reference. Each agent:
-1. Reads your manuscript
-2. Finds every place the reference is cited
-3. Extracts the verbatim claim you make
-4. Reads the source document
-5. Extracts the verbatim text from the source
-6. Compares claim vs source
-7. Writes a verdict with evidence
+## After Agents Complete
 
-## Verdict Types
+Write `<path>/RECIEPTS.md`:
 
-- **VALID** - Source supports your claim
-- **ADJUST** - Minor discrepancy needs fixing
-- **INVALID** - Source does not support claim
-- **UNCLEAR** - Cannot verify
+```markdown
+# Citation Verification Report
+
+**Document:** [name]
+**Checked:** [count]
+
+## Summary
+
+| Status | Count |
+|--------|-------|
+| VALID | X |
+| ADJUST | Y |
+| INVALID | Z |
+
+## Issues Found
+
+[For each non-VALID verdict, show:]
+
+### [N]. [Short citation]
+
+**Status:** [ADJUST/INVALID]
+
+**Claim:** [quote]
+
+**Source:** [quote]
+
+**Fix:** [correction]
+
+---
+
+## All Clear
+
+[List VALID citations, or "None - all citations have issues"]
+```
+
+Display: "Done. X issues found. See RECIEPTS.md"

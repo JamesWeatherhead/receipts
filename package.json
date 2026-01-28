@@ -1,7 +1,7 @@
 {
   "name": "reciepts",
-  "version": "0.2.0",
-  "description": "Show me the receipts on your citations. Parallel multi-agent citation verification for Claude Code.",
+  "version": "0.3.0",
+  "description": "Verify your citations say what you claim. One command.",
   "keywords": [
     "citations",
     "verification",

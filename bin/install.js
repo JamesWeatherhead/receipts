@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.2.0';
+const VERSION = '0.3.0';
 const PACKAGE_NAME = 'reciepts';
 
 // Colors
@@ -23,11 +23,21 @@ function log(msg, color = '') {
 
 function banner() {
   console.log(`
-${colors.bright}${colors.cyan}
-  reciepts v${VERSION}
-  ─────────────────────────────────────
-  Citation verification for manuscripts
+${colors.cyan}
+    ┌─────────────┐
+    │ ≋≋≋≋≋≋≋≋≋≋≋ │
+    │             │
+    │  CITATIONS  │
+    │  ─────────  │
+    │  [1] ✓      │
+    │  [2] ✓      │
+    │  [3] ✗      │
+    │             │
+    │ ≋≋≋≋≋≋≋≋≋≋≋ │
+    └─────────────┘
 ${colors.reset}
+${colors.bright}  reciepts${colors.reset} v${VERSION}
+  Verify your citations say what you claim.
 `);
 }
 
@@ -66,16 +76,12 @@ function install() {
   const srcCommandsDir = path.join(packageDir, 'commands', 'reciepts');
   const srcAgentsDir = path.join(packageDir, 'agents');
 
-  log('Installing...', colors.cyan);
-
   if (fs.existsSync(srcCommandsDir)) {
-    log('  Installing commands...', colors.dim);
     copyDir(srcCommandsDir, commandsDir);
-    log('  [OK] Commands -> ~/.claude/commands/reciepts/', colors.green);
+    log('  ✓ Installed commands/reciepts', colors.green);
   }
 
   if (fs.existsSync(srcAgentsDir)) {
-    log('  Installing agents...', colors.dim);
     const agentFiles = fs.readdirSync(srcAgentsDir);
     ensureDir(agentsDir);
     for (const file of agentFiles) {
@@ -86,16 +92,12 @@ function install() {
         );
       }
     }
-    log('  [OK] Agents -> ~/.claude/agents/', colors.green);
+    log('  ✓ Installed reciepts-verifier', colors.green);
   }
 
-  log('\nInstallation complete.', colors.green);
-  log('\nCommands:', colors.bright);
-  log('  /reciepts:help     Show help', colors.dim);
-  log('  /reciepts:init     Initialize paper', colors.dim);
-  log('  /reciepts:verify   Run verification', colors.dim);
-  log('  /reciepts:report   Generate report', colors.dim);
-  log('\nRestart Claude Code to load commands.\n', colors.yellow);
+  log('');
+  log(`${colors.green}Done!${colors.reset} Run ${colors.cyan}/reciepts <path>${colors.reset} to verify citations.`);
+  log('');
 }
 
 function uninstall() {
