@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-<img src="assets/demo.gif" alt="reciepts demo" width="600">
+<img src="assets/terminal.png" alt="reciepts" width="550">
 </p>
 
 ---
