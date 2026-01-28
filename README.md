@@ -173,41 +173,50 @@ receipts will read your paper, read your sources, and check every citation. When
 
 ## What You Get
 
-A detailed verdict for each citation showing exactly what's wrong and how to fix it:
+A detailed verdict for each citation showing exactly what's wrong and how to fix it. [See example verdicts →](https://github.com/JamesWeatherhead/receipts/tree/main/demo/verdicts)
 
 > ### Verdict: Reference 1 — ADJUST
 >
-> Reference 1 is cited four times. Two citations are accurate. Two require correction.
+> **Citation:** Srivastava et al. (2014). *Dropout: A Simple Way to Prevent Neural Networks from Overfitting.* JMLR.
+>
+> **Summary:** Reference 1 is cited four times in the manuscript. Two citations are accurate: the general description of dropout and the direct quote about co-adaptations. However, two citations contain errors that require correction.
 >
 > ---
 >
-> #### Instance 2
+> #### Instance 2 — Section "Dropout Regularization", paragraph 2
 >
-> **Your manuscript:**
-> > *"The optimal dropout probability is p=0.5 for all layers"*
+> **Manuscript claims:**
+> > *"According to Srivastava et al., the optimal dropout probability is **p=0.5 for all layers**, which they found to work well across a wide range of networks and tasks."*
 >
-> **Actual source:**
-> > *"All dropout nets use p=0.5 for hidden units and p=0.8 for input units."*
+> **Source states:**
+> > *"In the simplest case, each unit is retained with a fixed probability p independent of other units, where p can be chosen using a validation set or can simply be set at 0.5, which seems to be close to optimal for a wide range of networks and tasks."*
 >
-> **NOT SUPPORTED** — Different rates for hidden vs input layers
+> **Source also states:**
+> > ***"All dropout nets use p=0.5 for hidden units and p=0.8 for input units."***
+>
+> **Assessment:** NOT SUPPORTED
+>
+> **Discrepancy:** The manuscript claims "p=0.5 for all layers" but the source explicitly states p=0.5 for HIDDEN units and p=0.8 for INPUT units.
 >
 > ---
 >
-> #### Instance 3
+> #### Instance 3 — Section "Dropout Regularization", paragraph 2
 >
-> **Your manuscript:**
-> > *"They achieved an error rate of 0.89% on MNIST"*
+> **Manuscript claims:**
+> > *"Using this approach, they achieved an error rate of **0.89% on MNIST**, demonstrating state-of-the-art performance at the time."*
 >
-> **Actual source:**
-> > *"Error rates can be further improved to 0.94%"*
+> **Source states:**
+> > *"Error rates can be further improved to **0.94%** by replacing ReLU units with maxout units."*
 >
-> **NOT SUPPORTED** — Wrong number (0.89% vs 0.94%)
+> **Assessment:** NOT SUPPORTED
+>
+> **Discrepancy:** The manuscript claims 0.89% error rate, but the source states 0.94%. The figure 0.89% does not appear in the source.
 >
 > ---
 >
 > #### Required Corrections
-> 1. `p=0.5 for all layers` → `p=0.5 for hidden units and p=0.8 for input units`
-> 2. `0.89%` → `0.94%`
+> 1. Change `p=0.5 for all layers` → `p=0.5 for hidden units and p=0.8 for input units`
+> 2. Change `0.89%` → `0.94%`
 
 | Status | Meaning |
 |--------|---------|
