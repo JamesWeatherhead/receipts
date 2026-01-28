@@ -1,17 +1,17 @@
 <h1 align="center">RECEIPTS</h1>
 
 <p align="center">
-<strong>GPTZero: "Is this citation real?"<br>reciepts: "Is this citation <em>right</em>?"</strong>
+<strong>GPTZero: "Is this citation real?"<br>receipts: "Is this citation <em>right</em>?"</strong>
 </p>
 
 <p align="center">
-<a href="https://www.npmjs.com/package/reciepts"><img src="https://img.shields.io/npm/v/reciepts.svg" alt="npm version"></a>
-<a href="https://github.com/JamesWeatherhead/reciepts/stargazers"><img src="https://img.shields.io/github/stars/JamesWeatherhead/reciepts" alt="GitHub stars"></a>
+<a href="https://www.npmjs.com/package/receiptscc"><img src="https://img.shields.io/npm/v/receiptscc.svg" alt="npm version"></a>
+<a href="https://github.com/JamesWeatherhead/receipts/stargazers"><img src="https://img.shields.io/github/stars/JamesWeatherhead/receipts" alt="GitHub stars"></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
 </p>
 
 <p align="center">
-<img src="assets/terminal.png" alt="reciepts" width="550">
+<img src="assets/terminal.png" alt="receipts" width="550">
 </p>
 
 <p align="center">
@@ -32,7 +32,7 @@ The actual paper says: *"We achieve 73% accuracy on the standard benchmark"*
 
 Not fraud. Just human memory + exhaustion + LLM assistance = systematic misquotation.
 
-**reciepts catches this before your reviewers do.**
+**receipts catches this before your reviewers do.**
 
 ---
 
@@ -97,16 +97,16 @@ Wait for it to finish.
 
 ---
 
-### Step 3: Install reciepts
+### Step 3: Install receiptscc
 
 Copy and run this:
 
 ```bash
-npx reciepts
+npx receiptscc
 ```
 
 <p align="center">
-<img src="assets/screenshots/step1.png" alt="Install reciepts" width="420">
+<img src="assets/screenshots/step1.png" alt="Install receiptscc" width="420">
 </p>
 
 You will see a receipt banner. That means it worked. You only do this once.
@@ -153,21 +153,21 @@ The first time you run `claude`, it will ask for your API key. Paste it in.
 
 ---
 
-### Step 6: Run reciepts
+### Step 6: Run receipts
 
 Now you are inside Claude Code. Type this command:
 
 ```
-/reciepts
+/receipts
 ```
 
 <p align="center">
-<img src="assets/screenshots/step3.png" alt="Run /reciepts" width="500">
+<img src="assets/screenshots/step3.png" alt="Run /receipts" width="500">
 </p>
 
-**Important:** The `/reciepts` command only works inside Claude Code. If you type it in your regular terminal, it will not work.
+**Important:** The `/receipts` command only works inside Claude Code. If you type it in your regular terminal, it will not work.
 
-reciepts will read your paper, read your sources, and check every citation. When it finishes, it creates a file called `RECIEPTS.md` in your folder with the results.
+receipts will read your paper, read your sources, and check every citation. When it finishes, it creates a file called `RECIEPTS.md` in your folder with the results.
 
 ---
 
@@ -215,12 +215,12 @@ Use Haiku for drafts. Opus for final submission.
 
 ## Lightweight Install
 
-reciepts adds only **29 tokens** to your Claude Code context:
+receipts adds only **29 tokens** to your Claude Code context:
 
 | Component | What it is | Tokens |
 |-----------|------------|--------|
-| `/reciepts` | The command definition | 13 |
-| `reciepts-verifier` | Agent template for verification | 16 |
+| `/receipts` | The command definition | 13 |
+| `receipts-verifier` | Agent template for verification | 16 |
 
 That's the install footprint—two tiny files. The actual verification work uses Claude's normal token budget (hence the ~$0.50-$5 cost per paper).
 
@@ -232,9 +232,9 @@ That's the install footprint—two tiny files. The actual verification work uses
 
 You need Node.js. Download it from [nodejs.org](https://nodejs.org/).
 
-**"bash: /reciepts: No such file or directory"**
+**"bash: /receipts: No such file or directory"**
 
-You typed `/reciepts` in your regular terminal. You need to type it inside Claude Code. First run `claude` to start Claude Code, then type `/reciepts`.
+You typed `/receipts` in your regular terminal. You need to type it inside Claude Code. First run `claude` to start Claude Code, then type `/receipts`.
 
 **"No manuscript found"**
 
@@ -257,5 +257,5 @@ MIT
 ---
 
 <p align="center">
-<strong>Your citations are only as good as your memory. reciepts is better than your memory.</strong>
+<strong>Your citations are only as good as your memory. receipts is better than your memory.</strong>
 </p>

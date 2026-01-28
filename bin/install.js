@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.8.2';
-const PACKAGE_NAME = 'reciepts';
+const VERSION = '0.9.0';
+const PACKAGE_NAME = 'receiptscc';
 
 // Colors
 const colors = {
@@ -70,7 +70,7 @@ function banner() {
     │                                 │
     └─────────────────────────────────┘
 
-${colors.bright}reciepts${colors.reset} v${VERSION}
+${colors.bright}receiptscc${colors.reset} v${VERSION}
 Verify your citations say what you claim.
 `);
 }
@@ -103,40 +103,40 @@ function copyDir(src, dest) {
 
 function install() {
   const claudeDir = getClaudeDir();
-  const commandsDir = path.join(claudeDir, 'commands', 'reciepts');
+  const commandsDir = path.join(claudeDir, 'commands', 'receipts');
   const agentsDir = path.join(claudeDir, 'agents');
 
   const packageDir = path.resolve(__dirname, '..');
-  const srcCommandsDir = path.join(packageDir, 'commands', 'reciepts');
+  const srcCommandsDir = path.join(packageDir, 'commands', 'receipts');
   const srcAgentsDir = path.join(packageDir, 'agents');
 
   if (fs.existsSync(srcCommandsDir)) {
     copyDir(srcCommandsDir, commandsDir);
-    log('  ✓ Installed commands/reciepts', colors.green);
+    log('  ✓ Installed commands/receipts', colors.green);
   }
 
   if (fs.existsSync(srcAgentsDir)) {
     const agentFiles = fs.readdirSync(srcAgentsDir);
     ensureDir(agentsDir);
     for (const file of agentFiles) {
-      if (file.startsWith('reciepts-')) {
+      if (file.startsWith('receipts-')) {
         fs.copyFileSync(
           path.join(srcAgentsDir, file),
           path.join(agentsDir, file)
         );
       }
     }
-    log('  ✓ Installed reciepts-verifier', colors.green);
+    log('  ✓ Installed receipts-verifier', colors.green);
   }
 
   log('');
-  log(`${colors.green}Done!${colors.reset} Run ${colors.cyan}/reciepts <path>${colors.reset} to verify citations.`);
+  log(`${colors.green}Done!${colors.reset} Run ${colors.cyan}/receipts <path>${colors.reset} to verify citations.`);
   log('');
 }
 
 function uninstall() {
   const claudeDir = getClaudeDir();
-  const commandsDir = path.join(claudeDir, 'commands', 'reciepts');
+  const commandsDir = path.join(claudeDir, 'commands', 'receipts');
   const agentsDir = path.join(claudeDir, 'agents');
 
   log('Uninstalling...', colors.yellow);
@@ -149,7 +149,7 @@ function uninstall() {
   if (fs.existsSync(agentsDir)) {
     const agentFiles = fs.readdirSync(agentsDir);
     for (const file of agentFiles) {
-      if (file.startsWith('reciepts-')) {
+      if (file.startsWith('receipts-')) {
         fs.unlinkSync(path.join(agentsDir, file));
       }
     }
@@ -167,7 +167,7 @@ banner();
 if (args.includes('--uninstall') || args.includes('-u')) {
   uninstall();
 } else if (args.includes('--help') || args.includes('-h')) {
-  log('Usage: npx reciepts [options]', colors.bright);
+  log('Usage: npx receiptscc [options]', colors.bright);
   log('');
   log('Options:', colors.bright);
   log('  --help, -h       Show this help', colors.dim);

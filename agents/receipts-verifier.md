@@ -1,5 +1,5 @@
 ---
-name: reciepts-verifier
+name: receipts-verifier
 description: Citation verification agent
 ---
 

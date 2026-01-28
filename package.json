@@ -1,6 +1,6 @@
 {
-  "name": "reciepts",
-  "version": "0.8.2",
+  "name": "receiptscc",
+  "version": "0.9.0",
   "description": "Verify your citations say what you claim. One command.",
   "keywords": [
     "citations",
@@ -17,11 +17,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JamesWeatherhead/reciepts"
+    "url": "https://github.com/JamesWeatherhead/receipts"
   },
-  "homepage": "https://github.com/JamesWeatherhead/reciepts#readme",
+  "homepage": "https://github.com/JamesWeatherhead/receipts#readme",
   "bin": {
-    "reciepts": "./bin/install.js"
+    "receiptscc": "./bin/install.js"
   },
   "files": [
     "bin/",

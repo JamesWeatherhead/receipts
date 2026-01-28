@@ -1,5 +1,5 @@
 ---
-name: reciepts
+name: receipts
 description: Verify citations in a manuscript
 arguments:
   - name: path
@@ -7,7 +7,7 @@ arguments:
     required: true
 ---
 
-# reciepts
+# receipts
 
 Verify that citations say what you claim they say.
 
