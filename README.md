@@ -175,23 +175,31 @@ receipts will read your paper, read your sources, and check every citation. When
 
 A report showing which citations check out and which don't:
 
-```
-# Citation Verification Report
+<table>
+<tr>
+<td>
 
-| Status  | Count |
-|---------|-------|
-| VALID   | 47    |
-| ADJUST  | 2     |
-| INVALID | 1     |
+### Citation Verification Report
 
-## Issues Found
+| Status | Count |
+|--------|-------|
+| VALID | 47 |
+| ADJUST | 2 |
+| INVALID | 1 |
 
-### [23] Smith et al. (2020)
+---
 
-**Your claim:** "achieved 99% accuracy on all benchmarks"
-**Source says:** "achieves 73% accuracy on the standard benchmark"
-**Fix:** Change "99%" to "73%", remove "all benchmarks"
-```
+#### Issue Found: [23] Smith et al. (2020)
+
+| | |
+|---|---|
+| **Your claim** | *"achieved 99% accuracy on all benchmarks"* |
+| **Source says** | *"achieves 73% accuracy on the standard benchmark"* |
+| **Fix** | Change "99%" to "73%", remove "all benchmarks" |
+
+</td>
+</tr>
+</table>
 
 | Status | What it means |
 |--------|---------------|
