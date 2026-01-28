@@ -173,39 +173,47 @@ receipts will read your paper, read your sources, and check every citation. When
 
 ## What You Get
 
-A report showing which citations check out and which don't:
+A detailed verdict for each citation showing exactly what's wrong and how to fix it:
 
-<table>
-<tr>
-<td>
+> ### 🔍 Verdict: Reference 1 — ADJUST
+>
+> Reference 1 is cited four times. Two citations are accurate. Two require correction.
+>
+> ---
+>
+> #### Instance 2
+>
+> 📄 **Your manuscript:**
+> > *"The optimal dropout probability is p=0.5 for all layers"*
+>
+> 📚 **Actual source:**
+> > *"All dropout nets use p=0.5 for hidden units and p=0.8 for input units."*
+>
+> ❌ **NOT SUPPORTED** — Different rates for hidden vs input layers
+>
+> ---
+>
+> #### Instance 3
+>
+> 📄 **Your manuscript:**
+> > *"They achieved an error rate of 0.89% on MNIST"*
+>
+> 📚 **Actual source:**
+> > *"Error rates can be further improved to 0.94%"*
+>
+> ❌ **NOT SUPPORTED** — Wrong number (0.89% vs 0.94%)
+>
+> ---
+>
+> #### ✏️ Required Corrections
+> 1. `p=0.5 for all layers` → `p=0.5 for hidden units and p=0.8 for input units`
+> 2. `0.89%` → `0.94%`
 
-### Citation Verification Report
-
-| Status | Count |
-|--------|-------|
-| VALID | 47 |
-| ADJUST | 2 |
-| INVALID | 1 |
-
----
-
-#### Issue Found: [23] Smith et al. (2020)
-
-| | |
-|---|---|
-| **Your claim** | *"achieved 99% accuracy on all benchmarks"* |
-| **Source says** | *"achieves 73% accuracy on the standard benchmark"* |
-| **Fix** | Change "99%" to "73%", remove "all benchmarks" |
-
-</td>
-</tr>
-</table>
-
-| Status | What it means |
-|--------|---------------|
-| **VALID** | Your citation is accurate |
-| **ADJUST** | Small fix needed (wrong number, slightly off wording) |
-| **INVALID** | Source does not support your claim |
+| Status | Meaning |
+|--------|---------|
+| ✅ **VALID** | Citation is accurate |
+| ⚠️ **ADJUST** | Small fix needed |
+| ❌ **INVALID** | Source doesn't support claim |
 
 ---
 
