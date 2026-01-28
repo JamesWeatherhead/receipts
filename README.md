@@ -209,6 +209,22 @@ Use Haiku for drafts. Opus for final submission.
 
 ---
 
+## Lightweight
+
+reciepts uses only **29 tokens** of your Claude Code context window:
+
+| Component | Purpose | Tokens |
+|-----------|---------|--------|
+| `/reciepts` skill | Orchestrates verification, finds papers, spawns agents | 13 |
+| `reciepts-verifier` agent | Template for per-citation verification | 16 |
+| **Total** | | **29** |
+
+That's **0.01%** of a 200k context window. The skill tells Claude what to do. The agent template gets cloned once per citation to verify it in parallel.
+
+No bloat. No background processes. Just two tiny files that spring into action when you need them.
+
+---
+
 ## Troubleshooting
 
 **"npm: command not found"**

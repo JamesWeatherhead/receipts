@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.7.10';
+const VERSION = '0.7.11';
 const PACKAGE_NAME = 'reciepts';
 
 // Colors
