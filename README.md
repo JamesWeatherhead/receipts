@@ -201,12 +201,6 @@ A report showing which citations check out and which don't:
 
 ---
 
-## Privacy
-
-Your paper stays local. reciepts runs inside Claude Code on your machine. PDFs are read locally and sent to Anthropic's API for analysis (same as any Claude Code operation). Nothing is stored or used for training. See [Anthropic's privacy policy](https://www.anthropic.com/privacy).
-
----
-
 ## Cost
 
 | Paper Size | Citations | Haiku 3.5 | Sonnet 4 | Opus 4.5 |
