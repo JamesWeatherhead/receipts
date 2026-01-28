@@ -167,7 +167,7 @@ Now you are inside Claude Code. Type this command:
 
 **Important:** The `/receipts` command only works inside Claude Code. If you type it in your regular terminal, it will not work.
 
-receipts will read your paper, read your sources, and check every citation. When it finishes, it creates a file called `RECIEPTS.md` in your folder with the results.
+receipts will read your paper, read your sources, and check every citation. When it finishes, it creates a file called `RECEIPTS.md` in your folder with the results.
 
 ---
 

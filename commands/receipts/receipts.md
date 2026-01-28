@@ -19,7 +19,7 @@ Given a path, do everything in one shot:
 2. **Find sources** - Look in `<path>/sources/` for reference documents
 3. **Parse references** - Extract the reference list from the manuscript
 4. **Verify each reference** - Spawn one agent per reference (parallel)
-5. **Generate report** - Write RECIEPTS.md with all findings
+5. **Generate report** - Write RECEIPTS.md with all findings
 
 ## Spawn Verification Agents
 
@@ -65,7 +65,7 @@ Launch ALL agents in ONE message (parallel execution).
 
 ## After Agents Complete
 
-Write `<path>/RECIEPTS.md`:
+Write `<path>/RECEIPTS.md`:
 
 ```markdown
 # Citation Verification Report
@@ -102,4 +102,4 @@ Write `<path>/RECIEPTS.md`:
 [List VALID citations, or "None - all citations have issues"]
 ```
 
-Display: "Done. X issues found. See RECIEPTS.md"
+Display: "Done. X issues found. See RECEIPTS.md"

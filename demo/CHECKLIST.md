@@ -18,4 +18,4 @@ None - all sources available.
 
 ## Verification Complete
 
-See [RECIEPTS.md](RECIEPTS.md) for full report.
+See [RECEIPTS.md](RECEIPTS.md) for full report.

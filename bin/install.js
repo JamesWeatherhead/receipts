@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.9.1';
+const VERSION = '0.9.2';
 const PACKAGE_NAME = 'receiptscc';
 
 // Colors
