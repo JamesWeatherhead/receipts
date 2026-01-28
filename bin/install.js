@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 
-const VERSION = '0.7.1';
+const VERSION = '0.7.10';
 const PACKAGE_NAME = 'reciepts';
 
 // Colors
@@ -12,6 +12,7 @@ const colors = {
   reset: '\x1b[0m',
   bright: '\x1b[1m',
   dim: '\x1b[2m',
+  red: '\x1b[31m',
   green: '\x1b[32m',
   yellow: '\x1b[33m',
   cyan: '\x1b[36m'
@@ -22,28 +23,55 @@ function log(msg, color = '') {
 }
 
 function banner() {
+  const now = new Date();
+  const date = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  const time = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+  const session = '#' + Math.random().toString(16).substring(2, 9);
+
   console.log(`
-${colors.cyan}
-    ┌────────────────────────────┐
-    │                            │
-    │       R E C I E P T S      │
-    │    Citation Verification   │
-    │    by: James Weatherhead   │
-    │                            │
-    │   ════════════════════     │
-    │      VERIFICATION          │
-    │   ════════════════════     │
-    │                            │
-    │   [1] Smith 2020   ✓ VALID │
-    │   [2] Jones 2021   ✗ WRONG │
-    │   [3] Chen 2019    ✓ VALID │
-    │                            │
-    │      THANK  YOU !          │
-    │                            │
-    └────────────────────────────┘
-${colors.reset}
-${colors.bright}  reciepts${colors.reset} v${VERSION} by James Weatherhead
-  Verify your citations say what you claim.
+    ┌─────────────────────────────────┐
+    │                                 │
+    │  R E C I E P T S                │
+    │  Citation  Verification         │
+    │  by: James Weatherhead          │
+    │                                 │
+    │  ────────────────────────       │
+    │     VERIFICATION                │
+    │  ────────────────────────       │
+    │                                 │
+    │  * * * * * * * * * * * * * *    │
+    │                                 │
+    │  Citation            Status     │
+    │  ────────────────────────       │
+    │  Smith (2020)          ${colors.green}VALID${colors.reset}    │
+    │  Jones (2021)        ${colors.red}INVALID${colors.reset}    │
+    │  Chen (2019)           ${colors.green}VALID${colors.reset}    │
+    │  Park (2022)          ${colors.yellow}ADJUST${colors.reset}    │
+    │  Adams (2018)          ${colors.green}VALID${colors.reset}    │
+    │                                 │
+    │  * * * * * * * * * * * * * *    │
+    │                                 │
+    │  Total                      5   │
+    │  Valid                      3   │
+    │  Invalid                    1   │
+    │  Adjust                     1   │
+    │  ────────────────────────       │
+    │  Accuracy               80.0%   │
+    │                                 │
+    │  * * * * * * * * * * * * * *    │
+    │                                 │
+    │  Date            ${date.padStart(12)}   │
+    │  Time                ${time.padStart(8)}   │
+    │  Session             ${session}   │
+    │                                 │
+    │    ██  █  █  ███  ██  █         │
+    │                                 │
+    │     THANK  YOU !                │
+    │                                 │
+    └─────────────────────────────────┘
+
+${colors.bright}reciepts${colors.reset} v${VERSION}
+Verify your citations say what you claim.
 `);
 }
 
