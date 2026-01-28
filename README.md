@@ -1,7 +1,7 @@
 <h1 align="center">RECIEPTS</h1>
 
 <p align="center">
-<strong>GPTZero finds fake citations. reciepts finds real citations that don't say what you claim.</strong>
+<strong>GPTZero: "Is this citation real?"<br>reciepts: "Is this citation <em>right</em>?"</strong>
 </p>
 
 <p align="center">
@@ -20,13 +20,29 @@
 
 ---
 
+## The Problem
+
+[GPTZero found 100 hallucinated citations across 51 papers at NeurIPS 2024.](https://techcrunch.com/2026/01/21/irony-alert-hallucinated-citations-found-in-papers-from-neurips-the-prestigious-ai-conference/) Those are the **fake** ones.
+
+Nobody is counting the **real** papers that don't say what authors claim.
+
+Your manuscript says: *"Smith et al. achieved 99% accuracy on all benchmarks"*
+
+The actual paper says: *"We achieve 73% accuracy on the standard benchmark"*
+
+Not fraud. Just human memory + exhaustion + LLM assistance = systematic misquotation.
+
+**reciepts catches this before your reviewers do.**
+
+---
+
 ## What is this?
 
-reciepts checks if your citations actually say what you claim. You give it your paper and the PDFs you cited. It reads both and tells you if anything is wrong.
+Give it your paper. Give it the PDFs you cited. It reads both. Tells you what's wrong.
 
-It runs inside **Claude Code**, which is Anthropic's AI assistant for your terminal. You install Claude Code, then install reciepts, then run one command.
+Runs inside **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** (Anthropic's terminal assistant). One command. ~$0.50-$5 per paper.
 
-**Cost:** ~$0.50-$5 per paper depending on length and model.
+Built by an MD/PhD student who got tired of manually re-checking citations at 2am before deadlines.
 
 ---
 
@@ -185,15 +201,9 @@ A report showing which citations check out and which don't:
 
 ---
 
-## Why I Built This
+## Privacy
 
-I review papers. I have seen citations that say the literal opposite of what the manuscript claims. Not fraud. Just human error. Memory is unreliable. Reading is hard. Deadlines are real.
-
-LLMs made this worse. They confidently generate citation text that sounds right but is not. The paper exists. The author exists. The claim? Fabricated. [GPTZero found 100 hallucinated citations across 51 papers at NeurIPS 2024](https://techcrunch.com/2026/01/21/irony-alert-hallucinated-citations-found-in-papers-from-neurips-the-prestigious-ai-conference/). Those are the fake ones.
-
-Nobody is counting the real papers that do not say what authors claim.
-
-I built reciepts to fix that.
+Your paper stays local. reciepts runs inside Claude Code on your machine. PDFs are read locally and sent to Anthropic's API for analysis (same as any Claude Code operation). Nothing is stored or used for training. See [Anthropic's privacy policy](https://www.anthropic.com/privacy).
 
 ---
 
@@ -209,19 +219,16 @@ Use Haiku for drafts. Opus for final submission.
 
 ---
 
-## Lightweight
+## Lightweight Install
 
-reciepts uses only **29 tokens** of your Claude Code context window:
+reciepts adds only **29 tokens** to your Claude Code context:
 
-| Component | Purpose | Tokens |
-|-----------|---------|--------|
-| `/reciepts` skill | Orchestrates verification, finds papers, spawns agents | 13 |
-| `reciepts-verifier` agent | Template for per-citation verification | 16 |
-| **Total** | | **29** |
+| Component | What it is | Tokens |
+|-----------|------------|--------|
+| `/reciepts` | The command definition | 13 |
+| `reciepts-verifier` | Agent template for verification | 16 |
 
-That's **0.01%** of a 200k context window. The skill tells Claude what to do. The agent template gets cloned once per citation to verify it in parallel.
-
-No bloat. No background processes. Just two tiny files that spring into action when you need them.
+That's the install footprint—two tiny files. The actual verification work uses Claude's normal token budget (hence the ~$0.50-$5 cost per paper).
 
 ---
 
