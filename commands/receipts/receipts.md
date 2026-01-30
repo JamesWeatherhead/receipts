@@ -1,25 +1,35 @@
 ---
 name: receipts
 description: Verify citations in a manuscript
-arguments:
-  - name: path
-    description: Path to folder with manuscript and sources/
-    required: true
 ---
 
 # receipts
 
 Verify that citations say what you claim they say.
 
-## Your Task
+## Step 1: Ask for the manuscript
 
-Given a path, do everything in one shot:
+ALWAYS ask first:
 
-1. **Find the manuscript** - Look for .pdf, .md, or .docx in the folder root
-2. **Find sources** - Look in `<path>/sources/` for reference documents
-3. **Parse references** - Extract the reference list from the manuscript
-4. **Verify each reference** - Spawn one agent per reference (parallel)
-5. **Generate report** - Write RECEIPTS.md with all findings
+"What manuscript should I verify? (provide the file path)"
+
+Wait for the user to respond with a path to their manuscript (.pdf, .md, or .docx).
+
+## Step 2: Ask for the sources
+
+After receiving the manuscript path, ask:
+
+"Where are the source PDFs you cited? (provide the folder path)"
+
+Wait for the user to respond with a path to their sources folder.
+
+## Step 3: Verify
+
+Once you have both paths:
+
+1. **Parse references** - Extract the reference list from the manuscript
+2. **Verify each reference** - Spawn one agent per reference (parallel)
+3. **Generate report** - Write RECEIPTS.md with all findings
 
 ## Spawn Verification Agents
 

@@ -14,15 +14,15 @@ Deep learning has revolutionized machine learning, but training deep networks ef
 
 Dropout, introduced by Srivastava et al. (2014) [1], is one of the most widely used regularization techniques. The key idea is simple: during training, randomly drop units from the network to prevent co-adaptation.
 
-According to Srivastava et al., the optimal dropout probability is **p=0.5 for all layers**, which they found to work well across a wide range of networks and tasks [1]. Using this approach, they achieved an error rate of **0.89% on MNIST** [1], demonstrating state-of-the-art performance at the time.
+According to Srivastava et al., the optimal dropout probability is p=0.5 for all layers, which they found to work well across a wide range of networks and tasks [1]. Using this approach, they achieved an error rate of 0.89% on MNIST [1], demonstrating state-of-the-art performance at the time.
 
 The authors showed that dropout "prevents complex co-adaptations in which a feature detector is only helpful in the context of several other specific feature detectors" [1].
 
 ## Practical Implementation with Scikit-learn
 
-For practitioners, scikit-learn (Pedregosa et al., 2011) [2] provides an accessible entry point to machine learning. The library is written entirely in Python and includes implementations of **over 100 algorithms** for supervised and unsupervised learning [2].
+For practitioners, scikit-learn (Pedregosa et al., 2011) [2] provides an accessible entry point to machine learning. The library is written entirely in Python and includes implementations of over 100 algorithms for supervised and unsupervised learning [2].
 
-The project was developed by a team of **12 authors** and is distributed under the **MIT license**, making it suitable for both academic and commercial use [2]. The documentation includes approximately **300 pages** of user guides and **more than 60 examples** [2].
+The project was developed by a team of 12 authors and is distributed under the MIT license, making it suitable for both academic and commercial use [2]. The documentation includes approximately 300 pages of user guides and more than 60 examples [2].
 
 ## Conclusion
 
