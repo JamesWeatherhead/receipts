@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-<img src="assets/terminal.png" alt="receipts" width="550">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/terminal.png" alt="receipts" width="550">
 </p>
 
 <p align="center">
@@ -89,7 +89,7 @@ npm install -g @anthropic-ai/claude-code
 ```
 
 <p align="center">
-<img src="assets/screenshots/step0.png" alt="Install Claude Code" width="550">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/screenshots/step0.png" alt="Install Claude Code" width="550">
 </p>
 
 Wait for it to finish.
@@ -105,7 +105,7 @@ npx receiptscc
 ```
 
 <p align="center">
-<img src="assets/screenshots/step1.png" alt="Install receiptscc" width="420">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/screenshots/step1.png" alt="Install receiptscc" width="420">
 </p>
 
 You will see a receipt banner. That means it worked. You only do this once.
@@ -117,7 +117,7 @@ You will see a receipt banner. That means it worked. You only do this once.
 Create a folder with your paper and sources:
 
 <p align="center">
-<img src="assets/screenshots/step2.png" alt="Folder structure" width="380">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/screenshots/step2.png" alt="Folder structure" width="380">
 </p>
 
 ```
@@ -143,7 +143,7 @@ claude
 ```
 
 <p align="center">
-<img src="assets/screenshots/step3a.png" alt="Start Claude Code" width="460">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/screenshots/step3a.png" alt="Start Claude Code" width="460">
 </p>
 
 **Windows users:** Replace `~/Desktop/thesis` with your actual path, like `C:\Users\YourName\Desktop\thesis`
@@ -161,7 +161,7 @@ Now you are inside Claude Code. Type this command:
 ```
 
 <p align="center">
-<img src="assets/screenshots/step3.png" alt="Run /receipts" width="500">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/screenshots/step3.png" alt="Run /receipts" width="500">
 </p>
 
 **Important:** The `/receipts` command only works inside Claude Code. If you type it in your regular terminal, it will not work.
