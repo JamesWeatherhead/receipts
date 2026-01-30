@@ -280,6 +280,14 @@ MIT
 
 ---
 
+## Disclaimer
+
+By using this tool, you confirm that you have the legal right to upload and process all documents you provide. This includes ensuring compliance with copyright laws, publisher terms, and institutional policies. Many academic papers are protected by copyright; you are responsible for verifying you have appropriate permissions (e.g., personal copies for research, open-access publications, or institutional access rights).
+
+This tool is provided "as is" without warranty of any kind. The author assumes no liability for any claims arising from your use of this software or the documents you process with it. Use of this tool is also subject to [Anthropic's Terms of Service](https://www.anthropic.com/legal/consumer-terms).
+
+---
+
 <p align="center">
 <strong>Your citations are only as good as your memory. receipts is better than your memory.</strong>
 </p>
