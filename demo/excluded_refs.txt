@@ -1,2 +1,0 @@
-# Add reference numbers to exclude from verification (one per line)
-# Example: 3
