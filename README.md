@@ -18,7 +18,6 @@
 </p>
 
 ---
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7423089631983771648?compact=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 ## The Problem
 
 [GPTZero found 100 hallucinated citations across 51 papers at NeurIPS 2024.](https://techcrunch.com/2026/01/21/irony-alert-hallucinated-citations-found-in-papers-from-neurips-the-prestigious-ai-conference/) Those are the **fake** ones.
