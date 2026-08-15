@@ -43,7 +43,9 @@ Runs inside **[Claude Code](https://docs.anthropic.com/en/docs/claude-code)** (A
 Built by an MD/PhD student who got tired of manually re-checking citations at 2am before deadlines.
 
 <p align="center">
-<video src="https://github.com/JamesWeatherhead/receipts/raw/main/assets/receipts-demo.mp4" controls muted playsinline width="720"></video>
+<a href="https://github.com/JamesWeatherhead/receipts/releases/download/demo-video/receipts-demo.mp4">
+<img src="https://raw.githubusercontent.com/JamesWeatherhead/receipts/main/assets/receipts-demo.gif" alt="receipts demo" width="720">
+</a>
 </p>
 
 ---
